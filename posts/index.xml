@@ -7,7 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© CatBSD</copyright>
-    <lastBuildDate>Mon, 11 Apr 2022 18:07:00 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 30 Apr 2022 20:40:53 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Typescript Learning</title>
+      <link>https://dogbsd.github.io/posts/typescript-learning/</link>
+      <pubDate>Sat, 30 Apr 2022 20:40:53 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/typescript-learning/</guid>
+      <description>今天，正式开始TypeScript的学习，祝我早日修成Vue神功！
+环境 笔电: MacBook Air (11-inch, Early 2014) OS: macOS 10.14.6 node: v16.14.2 tsc: Version 4.6.4 Code: _  tsc typescript complie
+ Code Run 技巧 一个终端开实时编译：tsc 1.ts -w,另一个终端手动执行：node 1.js 查看结果
+  类型推断，函数接收值手动设置类型  // 无法确定值时（类型推断），编译器会认为是 any类型，可接收任意值，会造成代码不健壮 function sum(a:number ,b: number){  return a + b }  console.log(sum(222,3))  // 指定函数返回类型 function sum(a:number ,b: number): string{  return &amp;#39;结果：&amp;#39;+ a + b }  console.log(sum(222,3))  数组  let a = [&amp;#39;sss&amp;#39;] //string[] 数组里的值只能是string a.</description>
+    </item>
+    
     <item>
       <title>Debian11 Install Postgresql13</title>
       <link>https://dogbsd.github.io/posts/debian11-install-postgresql13/</link>

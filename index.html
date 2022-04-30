@@ -56,6 +56,20 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/typescript-learning/">Typescript Learning</a></h1>
+					<time>Apr 30, 2022</time>
+					<br><div class="description">
+						
+						今天，正式开始TypeScript的学习，祝我早日修成Vue神功！
+环境 笔电: MacBook Air (11-inch, Early 2014) OS: macOS 10.14.6 node: v16.14.2 tsc: Version 4.6.4 Code: _  tsc typescript complie
+ Code Run 技巧 一个终端开实时编译：tsc 1.ts -w,另一个终端手动执行：node 1.js 查看结果
+  类型推断，函数接收值手动设置类型  // 无法确定值时（类型推断），编译器会认为是 any类型，可接收任意值，会造成代码不健壮 function sum(a:number ,b: number){  return a + b }  console.log(sum(222,3))  // 指定函数返回类型 function sum(a:number ,b: number): string{  return &#39;结果：&#39;+ a + b }  console.log(sum(222,3))  数组  let a = [&#39;sss&#39;] //string[] 数组里的值只能是string a.&hellip;
+						
+					</div>
+					<a href="/posts/typescript-learning/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/debian11-install-postgresql13/">Debian11 Install Postgresql13</a></h1>
 					<time>Apr 11, 2022</time>
 					<br><div class="description">
@@ -79,18 +93,6 @@ su - postgres //切换到postgres用户 psql //进入postgres命令交互 \l //�
 						
 					</div>
 					<a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/arch-linux-install-dwm/">Arch Linux Install Dwm</a></h1>
-					<time>Feb 23, 2022</time>
-					<br><div class="description">
-						
-						接着上篇的Arch Linux环境基础安装后，进行安装dwm
- 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config.&hellip;
-						
-					</div>
-					<a href="/posts/arch-linux-install-dwm/">Read more ⟶</a>
 				</section>
 				
 				
