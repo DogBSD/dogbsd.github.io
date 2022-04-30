@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>sql on CatBSD&#39;s Blog</title>
+    <link>https://dogbsd.github.io/tags/sql/</link>
+    <description>Recent content in sql on CatBSD&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© CatBSD</copyright>
+    <lastBuildDate>Mon, 11 Apr 2022 18:07:00 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian11 Install Postgresql13</title>
+      <link>https://dogbsd.github.io/posts/debian11-install-postgresql13/</link>
+      <pubDate>Mon, 11 Apr 2022 18:07:00 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/debian11-install-postgresql13/</guid>
+      <description>学习一下Postgresql数据库
+ 安装数据流 # 安装 apt install postgresql postgresql-contrib  # 查看版本 sudo -u postgres psql -c &amp;#34;SELECT version();&amp;#34;    version ---------------------------------------------------------------------------------------------------------------------------  PostgreSQL 13.5 (Debian 13.5-0+deb11u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit (1 row) 查看已存在数据库 Postgresql安装完成后会自动创建一个postgres用户
+su - postgres //切换到postgres用户 psql //进入postgres命令交互 \l //查看所有已存在数据库   postgres=# \l  List of databases  Name | Owner | Encoding | Collate | Ctype | Access privileges -----------+----------+----------+------------+------------+-----------------------  postgres | postgres | UTF8 | en_US.</description>
+    </item>
+    
+  </channel>
+</rss>

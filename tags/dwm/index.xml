@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dwm on CatBSD&#39;s Blog</title>
+    <link>https://dogbsd.github.io/tags/dwm/</link>
+    <description>Recent content in dwm on CatBSD&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© CatBSD</copyright>
+    <lastBuildDate>Wed, 23 Feb 2022 21:49:33 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/dwm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arch Linux Install Dwm</title>
+      <link>https://dogbsd.github.io/posts/arch-linux-install-dwm/</link>
+      <pubDate>Wed, 23 Feb 2022 21:49:33 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/arch-linux-install-dwm/</guid>
+      <description>接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config.</description>
+    </item>
+    
+  </channel>
+</rss>

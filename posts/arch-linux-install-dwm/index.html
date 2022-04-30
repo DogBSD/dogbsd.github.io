@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Arch Linux Install Dwm - CatBSD&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Arch Linux Install Dwm" />
+<meta property="og:description" content="接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dogbsd.github.io/posts/arch-linux-install-dwm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-23T21:49:33+08:00" />
+<meta property="article:modified_time" content="2022-02-23T21:49:33+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Arch Linux Install Dwm"/>
+<meta name="twitter:description" content="接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config."/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Arch Linux Install Dwm</h1>
+			<div class="meta">Posted on Feb 23, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			Arch Linux Install Dwm
+		</div>
+
+		<section class="body">
+			<blockquote>
+<p>接着上篇的Arch Linux环境基础安装后，进行安装dwm</p>
+</blockquote>
+<h2 id="克隆-dwm-development-code和st终端">克隆 dwm Development code和st终端</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># patch 打代码补丁
+</span></span><span style="display:flex;"><span>sudo pacman -S git make gcc patch
+</span></span><span style="display:flex;"><span>git clone https://git.suckless.org/dwm
+</span></span><span style="display:flex;"><span>git clone https://git.suckless.org/st
+</span></span><span style="display:flex;"><span>git clone https://git.suckless.org/dmenu
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[xxx@archWork-Server ~]$ tree  dwm/
+</span></span><span style="display:flex;"><span>dwm/
+</span></span><span style="display:flex;"><span>├── config.def.h
+</span></span><span style="display:flex;"><span>├── config.mk
+</span></span><span style="display:flex;"><span>├── drw.c
+</span></span><span style="display:flex;"><span>├── drw.h
+</span></span><span style="display:flex;"><span>├── dwm.1
+</span></span><span style="display:flex;"><span>├── dwm.c
+</span></span><span style="display:flex;"><span>├── dwm.png
+</span></span><span style="display:flex;"><span>├── LICENSE
+</span></span><span style="display:flex;"><span>├── Makefile
+</span></span><span style="display:flex;"><span>├── README
+</span></span><span style="display:flex;"><span>├── transient.c
+</span></span><span style="display:flex;"><span>├── util.c
+</span></span><span style="display:flex;"><span>└── util.h
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[hang@archWork-Server ~]$ tree st
+</span></span><span style="display:flex;"><span>st
+</span></span><span style="display:flex;"><span>├── arg.h
+</span></span><span style="display:flex;"><span>├── config.def.h
+</span></span><span style="display:flex;"><span>├── config.mk
+</span></span><span style="display:flex;"><span>├── FAQ
+</span></span><span style="display:flex;"><span>├── LEGACY
+</span></span><span style="display:flex;"><span>├── LICENSE
+</span></span><span style="display:flex;"><span>├── Makefile
+</span></span><span style="display:flex;"><span>├── README
+</span></span><span style="display:flex;"><span>├── st.1
+</span></span><span style="display:flex;"><span>├── st.c
+</span></span><span style="display:flex;"><span>├── st.h
+</span></span><span style="display:flex;"><span>├── st.info
+</span></span><span style="display:flex;"><span>├── TODO
+</span></span><span style="display:flex;"><span>├── win.h
+</span></span><span style="display:flex;"><span>└── x.c
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[hang@archWork-Server ~]$ tree dmenu/
+</span></span><span style="display:flex;"><span>dmenu/
+</span></span><span style="display:flex;"><span>├── arg.h
+</span></span><span style="display:flex;"><span>├── config.def.h
+</span></span><span style="display:flex;"><span>├── config.mk
+</span></span><span style="display:flex;"><span>├── dmenu.1
+</span></span><span style="display:flex;"><span>├── dmenu.c
+</span></span><span style="display:flex;"><span>├── dmenu_path
+</span></span><span style="display:flex;"><span>├── dmenu_run
+</span></span><span style="display:flex;"><span>├── drw.c
+</span></span><span style="display:flex;"><span>├── drw.h
+</span></span><span style="display:flex;"><span>├── LICENSE
+</span></span><span style="display:flex;"><span>├── Makefile
+</span></span><span style="display:flex;"><span>├── README
+</span></span><span style="display:flex;"><span>├── stest.1
+</span></span><span style="display:flex;"><span>├── stest.c
+</span></span><span style="display:flex;"><span>├── util.c
+</span></span><span style="display:flex;"><span>└── util.h
+</span></span></code></pre></div><h2 id="编译dwmstdmenu">编译dwm、st、dmenu</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd dwm
+</span></span><span style="display:flex;"><span>sudo make clean install
+</span></span><span style="display:flex;"><span># 三个程序的安装命令都是一样
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 在安装st时，会有报错
+</span></span><span style="display:flex;"><span>[hang@archWork-Server st]$ sudo make clean install
+</span></span><span style="display:flex;"><span>rm -f st st.o x.o st-0.8.5.tar.gz
+</span></span><span style="display:flex;"><span>cp config.def.h config.h
+</span></span><span style="display:flex;"><span>c99 -I/usr/X11R6/include  `pkg-config --cflags fontconfig`  `pkg-config --cflags freetype2` -DVERSION=\&#34;0.8.5\&#34; -D_XOPEN_SOURCE=600  -O1 -c st.c
+</span></span><span style="display:flex;"><span>/bin/sh: line 1: pkg-config: command not found
+</span></span><span style="display:flex;"><span>/bin/sh: line 1: pkg-config: command not found
+</span></span><span style="display:flex;"><span>c99 -I/usr/X11R6/include  `pkg-config --cflags fontconfig`  `pkg-config --cflags freetype2` -DVERSION=\&#34;0.8.5\&#34; -D_XOPEN_SOURCE=600  -O1 -c x.c
+</span></span><span style="display:flex;"><span>/bin/sh: line 1: pkg-config: command not found
+</span></span><span style="display:flex;"><span>/bin/sh: line 1: pkg-config: command not found
+</span></span><span style="display:flex;"><span>In file included from x.c:15:
+</span></span><span style="display:flex;"><span>/usr/include/X11/Xft/Xft.h:39:10: fatal error: ft2build.h: No such file or directory
+</span></span><span style="display:flex;"><span>   39 | #include &lt;ft2build.h&gt;
+</span></span><span style="display:flex;"><span>      |          ^~~~~~~~~~~~
+</span></span><span style="display:flex;"><span>compilation terminated.
+</span></span><span style="display:flex;"><span>make: *** [Makefile:22: x.o] Error 1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 缺少pkg-config程序
+</span></span><span style="display:flex;"><span>sudo pacman -S pkgconf
+</span></span></code></pre></div><h2 id="安装启动dwm必要工具">安装启动dwm必要工具</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># udisks2 udiskie选配，为了提示文件管理器u盘插入的,pcmanfm文件管理器
+</span></span><span style="display:flex;"><span>sudo pacman -S xorg xorg-xinit feh udisks2 udiskie pcmanfm
+</span></span></code></pre></div><h2 id="启动dwm">启动dwm</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># cp 配置文件
+</span></span><span style="display:flex;"><span>[hang@archWork-Server st]$ cp /etc/X11/xinit/xinitrc ~/.xinitrc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 注释掉下面所有行
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>#twm &amp;
+</span></span><span style="display:flex;"><span>#xclock -geometry 50x50-1+1 &amp;
+</span></span><span style="display:flex;"><span>#xterm -geometry 80x50+494+51 &amp;
+</span></span><span style="display:flex;"><span>#xterm -geometry 80x20+494-0 &amp;
+</span></span><span style="display:flex;"><span>#exec xterm -geometry 80x66+0+0 -name login
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 在最后面（if下边）增加下面行
+</span></span><span style="display:flex;"><span>exec dwm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@ 保存退出后,进入dwm
+</span></span><span style="display:flex;"><span>startx 
+</span></span></code></pre></div><h2 id="调整分辨率-一般是不需要设置的">调整分辨率 [一般是不需要设置的]</h2>
+<blockquote>
+<p>alt + shift + enter 启动st终端</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 查看显示器支持的模式
+</span></span><span style="display:flex;"><span>[hang@archWork-Server ~]$ xrandr -q
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 设置具体模式,rate 设置刷新率
+</span></span><span style="display:flex;"><span>xrandr --output HDMI-1 --mode 1920x1080 --rate 60.00
+</span></span></code></pre></div><h2 id="配置dwm快捷键">配置dwm快捷键</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 配置文件在源代码目录里的config.h，默认dwm使用的配置
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 修改config.h里/* key definitions */ 下面的 #define MODKEY Mod1Mask，其中Mod1Mask改为Mod4Mask
+</span></span><span style="display:flex;"><span>    --&gt; 将ALT修饰健改为Win键（super）
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+</span></span><span style="display:flex;"><span>    --&gt; win + p 启动dmenu,搜索应用或者命令，比如：firefox
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># { MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+</span></span><span style="display:flex;"><span>    --&gt; win + shift + enter 启动st
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># { MODKEY,                       XK_b,      togglebar,      {0} },
+</span></span><span style="display:flex;"><span>    --&gt; win + b,关闭topbar
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 其他
+</span></span><span style="display:flex;"><span>win + j/k 切换程序焦点
+</span></span><span style="display:flex;"><span>win + h/l 改变焦点程序窗口大小
+</span></span><span style="display:flex;"><span>win + shift + c 关闭焦点程序窗口 --&gt; 改为win + q
+</span></span><span style="display:flex;"><span>win + tfm 切换布局，t:tile 叠加；f:? 浮动窗口，区别于叠加;m:monocle 焦点程序满屏，显示的是层数
+</span></span><span style="display:flex;"><span>win + 1/2/3 切换工作窗口
+</span></span><span style="display:flex;"><span>win + shift + q 退出dwm
+</span></span><span style="display:flex;"><span>win + shuift + 1/2/3 将焦点程序移动到对应的工作窗口
+</span></span></code></pre></div><h2 id="使修改后配置生效">使修改后配置生效</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd dwm/
+</span></span><span style="display:flex;"><span>sudo make clean install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 退出dwm
+</span></span><span style="display:flex;"><span>alt + shift + q
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 进入dmw
+</span></span><span style="display:flex;"><span>startx
+</span></span></code></pre></div><h2 id="中文字体">中文字体</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo pacman -S wqy-zenhei wqy-microhei ttf-nerd-fonts-symbols
+</span></span></code></pre></div><h2 id="设置dwm中文字体">设置dwm中文字体</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>fc-list | grep &#34;Wen&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>static const char *fonts[]          = { &#34;Source Code Pro:size=10:type:Regular&#34;,&#34;WenQuanYi Micro Hei:size:10:type:Regular:antialias=true:autohint=true&#34;,&#34;Symbols Nerd Font:pixelsize=14:type=2048-em:antialias=true:autohint=true&#34; };
+</span></span></code></pre></div><h2 id="添加slstatus-suckless-官方推出">添加slstatus [suckless 官方推出]</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>git clone https://git.suckless.org/slstatus
+</span></span><span style="display:flex;"><span>sudo make clean install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 开机启动
+</span></span><span style="display:flex;"><span>sudo nano ~/.xinitrc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 在dwm前添加
+</span></span><span style="display:flex;"><span>exec slstatus
+</span></span></code></pre></div><h2 id="配置slstatus">配置slstatus</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cd slstatus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo nano config.h
+</span></span></code></pre></div><h2 id="音量-alsa-utils">音量 alsa-utils</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>sudo pacman -S alsa-utils
+</span></span></code></pre></div>
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/linux">linux</a></li>
+					
+					<li><a href="/tags/dwm">dwm</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script></div>
+    </body>
+</html>

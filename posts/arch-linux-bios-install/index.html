@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Arch Linux BIOS Install - CatBSD&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
+  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, &#43;0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Arch Linux BIOS Install" />
+<meta property="og:description" content="主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
+  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, &#43;0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dogbsd.github.io/posts/arch-linux-bios-install/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-23T17:31:23+08:00" />
+<meta property="article:modified_time" content="2022-02-23T17:31:23+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Arch Linux BIOS Install"/>
+<meta name="twitter:description" content="主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
+  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, &#43;0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd."/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Arch Linux BIOS Install</h1>
+			<div class="meta">Posted on Feb 23, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			Arch Linux BIOS Install
+		</div>
+
+		<section class="body">
+			<blockquote>
+<p>主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。</p>
+</blockquote>
+<hr>
+<h2 id="安装arch-基本检查">安装Arch 基本检查</h2>
+<ul>
+<li>ping</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ping baidu.com
+</span></span></code></pre></div><ul>
+<li>time</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>root@archiso ~ # timedatectl status
+</span></span><span style="display:flex;"><span>               Local time: Wed 2022-02-23 17:36:37 UTC
+</span></span><span style="display:flex;"><span>           Universal time: Wed 2022-02-23 17:36:37 UTC
+</span></span><span style="display:flex;"><span>                 RTC time: Wed 2022-02-23 17:36:37
+</span></span><span style="display:flex;"><span>                Time zone: UTC (UTC, +0000)
+</span></span><span style="display:flex;"><span>System clock synchronized: no
+</span></span><span style="display:flex;"><span>              NTP service: inactive
+</span></span><span style="display:flex;"><span>          RTC in local TZ: no
+</span></span></code></pre></div><ul>
+<li>ssh [非必需]</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>root@archiso ~ # systemctl status sshd
+</span></span><span style="display:flex;"><span>● sshd.service - OpenSSH Daemon
+</span></span><span style="display:flex;"><span>     Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor pres&gt;
+</span></span><span style="display:flex;"><span>     Active: active (running) since Wed 2022-02-23 17:28:00 UTC; 10min ago
+</span></span><span style="display:flex;"><span>   Main PID: 656 (sshd)
+</span></span><span style="display:flex;"><span>      Tasks: 1 (limit: 19021)
+</span></span><span style="display:flex;"><span>     Memory: 3.4M
+</span></span><span style="display:flex;"><span>        CPU: 198ms
+</span></span><span style="display:flex;"><span>     CGroup: /system.slice/sshd.service
+</span></span><span style="display:flex;"><span>             └─656 &#34;sshd: /usr/bin/sshd -D [listener] 0 of 10-100 startups&#34;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Feb 23 17:28:00 archiso systemd[1]: Started OpenSSH Daemon.
+</span></span><span style="display:flex;"><span>Feb 23 17:28:00 archiso sshd[656]: Server listening on 0.0.0.0 port 22.
+</span></span><span style="display:flex;"><span>Feb 23 17:28:00 archiso sshd[656]: Server listening on :: port 22.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>....
+</span></span></code></pre></div><h2 id="创建磁盘分区">创建磁盘分区</h2>
+<ul>
+<li>查看识别到的磁盘 lsblk</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>root@archiso ~ # lsblk
+</span></span><span style="display:flex;"><span>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>loop0    7:0    0 657.4M  1 loop /run/archiso/airootfs
+</span></span><span style="display:flex;"><span>sda      8:0    0 111.8G  0 disk
+</span></span><span style="display:flex;"><span>└─sda1   8:1    0 111.8G  0 part
+</span></span><span style="display:flex;"><span>sdb      8:16   0 238.5G  0 disk
+</span></span><span style="display:flex;"><span>├─sdb1   8:17   0    18M  0 part
+</span></span><span style="display:flex;"><span>└─sdb2   8:18   0 238.5G  0 part
+</span></span><span style="display:flex;"><span>sdc      8:32   1   7.3G  0 disk
+</span></span><span style="display:flex;"><span>├─sdc1   8:33   1   735M  0 part /run/archiso/bootmnt
+</span></span><span style="display:flex;"><span>└─sdc2   8:34   1    77M  0 part
+</span></span></code></pre></div><blockquote>
+<p>sda 准备做/home ,sdb做为 / 和/boot分区,不用SWAP分区，使用SWAP File代替，可以之后创建</p>
+</blockquote>
+<ul>
+<li>cfdisk 分区，mkfs格式化,mount挂在分区</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>cfdisk /dev/sda
+</span></span><span style="display:flex;"><span>cfdisk /dev/sdb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 可以用自己喜欢的文件系统，比如ext4,btrfs,xfs...
+</span></span><span style="display:flex;"><span>root@archiso ~ # mkfs.btrfs /dev/sda1 -f
+</span></span><span style="display:flex;"><span>btrfs-progs v5.16
+</span></span><span style="display:flex;"><span>See http://btrfs.wiki.kernel.org for more information.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Performing full device TRIM /dev/sda1 (111.79GiB) ...
+</span></span><span style="display:flex;"><span>NOTE: several default settings have changed in version 5.15, please make sure
+</span></span><span style="display:flex;"><span>      this does not affect your deployments:
+</span></span><span style="display:flex;"><span>      - DUP for metadata (-m dup)
+</span></span><span style="display:flex;"><span>      - enabled no-holes (-O no-holes)
+</span></span><span style="display:flex;"><span>      - enabled free-space-tree (-R free-space-tree)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Label:              (null)
+</span></span><span style="display:flex;"><span>UUID:               31948ff7-5066-484b-9f82-8fc1f3b0cc1b
+</span></span><span style="display:flex;"><span>Node size:          16384
+</span></span><span style="display:flex;"><span>Sector size:        4096
+</span></span><span style="display:flex;"><span>Filesystem size:    111.79GiB
+</span></span><span style="display:flex;"><span>Block group profiles:
+</span></span><span style="display:flex;"><span>  Data:             single            8.00MiB
+</span></span><span style="display:flex;"><span>  Metadata:         DUP               1.00GiB
+</span></span><span style="display:flex;"><span>  System:           DUP               8.00MiB
+</span></span><span style="display:flex;"><span>SSD detected:       yes
+</span></span><span style="display:flex;"><span>Zoned device:       no
+</span></span><span style="display:flex;"><span>Incompat features:  extref, skinny-metadata, no-holes
+</span></span><span style="display:flex;"><span>Runtime features:   free-space-tree
+</span></span><span style="display:flex;"><span>Checksum:           crc32c
+</span></span><span style="display:flex;"><span>Number of devices:  1
+</span></span><span style="display:flex;"><span>Devices:
+</span></span><span style="display:flex;"><span>   ID        SIZE  PATH
+</span></span><span style="display:flex;"><span>    1   111.79GiB  /dev/sda1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 将sdb2 分区也进行格式化
+</span></span><span style="display:flex;"><span> mkfs.btrfs /dev/sdb2 -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># /dev/sdb1 作为BIOS grub，2M大小足够了
+</span></span><span style="display:flex;"><span>root@archiso ~ # mkfs.fat -F32 /dev/sdb1
+</span></span><span style="display:flex;"><span>mkfs.fat 4.2 (2021-01-31)
+</span></span><span style="display:flex;"><span>WARNING: Number of clusters for 32 bit FAT is less then suggested minimum.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># mount 挂在分区
+</span></span><span style="display:flex;"><span># 建议单独拿一块硬盘作为home分区，避免用户数据丢失，有能力可以做raid
+</span></span><span style="display:flex;"><span>root@archiso ~ # mount /dev/sdb2 /mnt
+</span></span><span style="display:flex;"><span>root@archiso ~ # mkdir /mnt/home
+</span></span><span style="display:flex;"><span>root@archiso ~ # mount /dev/sda1 /mnt/home
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 检查MOUNTPOINTS
+</span></span><span style="display:flex;"><span>root@archiso ~ # lsblk
+</span></span><span style="display:flex;"><span>NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+</span></span><span style="display:flex;"><span>loop0    7:0    0 657.4M  1 loop /run/archiso/airootfs
+</span></span><span style="display:flex;"><span>sda      8:0    0 111.8G  0 disk
+</span></span><span style="display:flex;"><span>└─sda1   8:1    0 111.8G  0 part /mnt/home
+</span></span><span style="display:flex;"><span>sdb      8:16   0 238.5G  0 disk
+</span></span><span style="display:flex;"><span>├─sdb1   8:17   0    18M  0 part 
+</span></span><span style="display:flex;"><span>└─sdb2   8:18   0 238.5G  0 part /mnt
+</span></span><span style="display:flex;"><span>sdc      8:32   1   7.3G  0 disk
+</span></span><span style="display:flex;"><span>├─sdc1   8:33   1   735M  0 part /run/archiso/bootmnt
+</span></span><span style="display:flex;"><span>└─sdc2   8:34   1    77M  0 part
+</span></span></code></pre></div><h2 id="安装系统基础包">安装系统基础包</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">添加国内源</span>,<span style="color:#a6e22e">放置最前面</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">root</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">archiso</span> <span style="color:#960050;background-color:#1e0010">~</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">nano</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">etc</span><span style="color:#f92672">/</span><span style="color:#a6e22e">pacman</span>.<span style="color:#a6e22e">d</span><span style="color:#f92672">/</span><span style="color:#a6e22e">mirrorlist</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Server</span> = <span style="color:#a6e22e">https</span>:<span style="color:#75715e">//mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">刷新</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">root</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">archiso</span> <span style="color:#960050;background-color:#1e0010">~</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">pacman</span> <span style="color:#f92672">-</span><span style="color:#a6e22e">Syy</span>
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Synchronizing</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">databases</span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">core</span>                                                                                   <span style="color:#ae81ff">133.4</span> <span style="color:#a6e22e">KiB</span>   <span style="color:#ae81ff">179</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">01</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">extra</span>                                                                                 <span style="color:#ae81ff">1538.9</span> <span style="color:#a6e22e">KiB</span>   <span style="color:#ae81ff">427</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">04</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">community</span>                                                                                <span style="color:#ae81ff">6.1</span> <span style="color:#a6e22e">MiB</span>   <span style="color:#ae81ff">434</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">14</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">root</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">archis</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">安装基础包</span> <span style="color:#a6e22e">base</span> <span style="color:#a6e22e">linux</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">firmware</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">root</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">archiso</span> <span style="color:#960050;background-color:#1e0010">~</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">pacstrap</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">mnt</span> <span style="color:#a6e22e">base</span> <span style="color:#a6e22e">linux</span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">firmware</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; <span style="color:#a6e22e">Creating</span> <span style="color:#a6e22e">install</span> <span style="color:#a6e22e">root</span> <span style="color:#a6e22e">at</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">mnt</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span>&gt; <span style="color:#a6e22e">Installing</span> <span style="color:#a6e22e">packages</span> <span style="color:#a6e22e">to</span> <span style="color:#f92672">/</span><span style="color:#a6e22e">mnt</span>
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Synchronizing</span> <span style="color:#f92672">package</span> <span style="color:#a6e22e">databases</span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">core</span>                                                                                   <span style="color:#ae81ff">133.4</span> <span style="color:#a6e22e">KiB</span>   <span style="color:#ae81ff">200</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">01</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">extra</span>                                                                                 <span style="color:#ae81ff">1538.9</span> <span style="color:#a6e22e">KiB</span>  <span style="color:#ae81ff">2006</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">01</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">community</span>                                                                                <span style="color:#ae81ff">6.1</span> <span style="color:#a6e22e">MiB</span>  <span style="color:#ae81ff">1765</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">04</span> [<span style="color:#960050;background-color:#1e0010">######################################################################</span>] <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">resolving</span> <span style="color:#a6e22e">dependencies</span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">There</span> <span style="color:#a6e22e">are</span> <span style="color:#ae81ff">3</span> <span style="color:#a6e22e">providers</span> <span style="color:#a6e22e">available</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">initramfs</span>:
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Repository</span> <span style="color:#a6e22e">core</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">mkinitcpio</span>
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Repository</span> <span style="color:#a6e22e">extra</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#ae81ff">2</span>) <span style="color:#a6e22e">booster</span>  <span style="color:#ae81ff">3</span>) <span style="color:#a6e22e">dracut</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Enter</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">number</span> (<span style="color:#66d9ef">default</span>=<span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">looking</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">conflicting</span> <span style="color:#a6e22e">packages</span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Packages</span> (<span style="color:#ae81ff">117</span>) <span style="color:#a6e22e">acl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.3.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">archlinux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">keyring</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220125</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">argon2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20190702</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">attr</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.5.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">audit</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.0.7</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">bash</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.1.016</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">binutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.38</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">brotli</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.9</span><span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>  <span style="color:#a6e22e">bzip2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">ca</span><span style="color:#f92672">-</span><span style="color:#a6e22e">certificates</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20210603</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">ca</span><span style="color:#f92672">-</span><span style="color:#a6e22e">certificates</span><span style="color:#f92672">-</span><span style="color:#a6e22e">mozilla</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.75</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">ca</span><span style="color:#f92672">-</span><span style="color:#a6e22e">certificates</span><span style="color:#f92672">-</span><span style="color:#a6e22e">utils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20210603</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">coreutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">cryptsetup</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.4.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">curl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">7.81.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">dbus</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.12.20</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">device</span><span style="color:#f92672">-</span><span style="color:#a6e22e">mapper</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.03.15</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">diffutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">e2fsprogs</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.46.5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">expat</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.4.5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">file</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.41</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">filesystem</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2021.12.07</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">findutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.9.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">gawk</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.1.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">gcc</span><span style="color:#f92672">-</span><span style="color:#a6e22e">libs</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11.2.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">gettext</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.21</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">glib2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.70.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">glibc</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.35</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">gmp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6.2.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">gnupg</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.2.32</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">gnutls</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.7.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">gpgme</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.17.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">grep</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.7</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">gzip</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">hwdata</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.356</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">iana</span><span style="color:#f92672">-</span><span style="color:#a6e22e">etc</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220205</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">icu</span><span style="color:#f92672">-</span><span style="color:#ae81ff">70.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">iproute2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.16.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">iptables</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1.8.7</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">iputils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20211215</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">json</span><span style="color:#f92672">-</span><span style="color:#a6e22e">c</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.15</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">kbd</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.4.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">keyutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.6.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">kmod</span><span style="color:#f92672">-</span><span style="color:#ae81ff">29</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">krb5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.19.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">less</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">590</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libarchive</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.6.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">libassuan</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.5.5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libcap</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.63</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">libcap</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ng</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.8.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">7</span>  <span style="color:#a6e22e">libcroco</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.6.13</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">libelf</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.186</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>  <span style="color:#a6e22e">libffi</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.4.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">libgcrypt</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.9.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libgpg</span><span style="color:#f92672">-</span><span style="color:#66d9ef">error</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.44</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libidn2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.3.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libksba</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.6.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">libldap</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.6.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libmnl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libnetfilter_conntrack</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libnfnetlink</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.0.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">libnftnl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.2.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libnghttp2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.46.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libnl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.5.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libp11</span><span style="color:#f92672">-</span><span style="color:#a6e22e">kit</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.24.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">libpcap</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.10.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">libpsl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.21.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libsasl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.1.27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libseccomp</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.5.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libsecret</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.20.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libssh2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.10.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libsysprof</span><span style="color:#f92672">-</span><span style="color:#a6e22e">capture</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.42.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libtasn1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.18.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libtirpc</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.3.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">libunistring</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.9.10</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">libxcrypt</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.4.28</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">libxml2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.9.13</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">licenses</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220125</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">api</span><span style="color:#f92672">-</span><span style="color:#a6e22e">headers</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.16.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">firmware</span><span style="color:#f92672">-</span><span style="color:#a6e22e">whence</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220209.6342082</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">lz4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1.9.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">mkinitcpio</span><span style="color:#f92672">-</span><span style="color:#ae81ff">31</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">mkinitcpio</span><span style="color:#f92672">-</span><span style="color:#a6e22e">busybox</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.35.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">mpfr</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.1.0</span>.<span style="color:#a6e22e">p13</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">ncurses</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">nettle</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.7.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">npth</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.6</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">openssl</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.1.1</span>.<span style="color:#a6e22e">m</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">p11</span><span style="color:#f92672">-</span><span style="color:#a6e22e">kit</span><span style="color:#f92672">-</span><span style="color:#ae81ff">0.24.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pacman</span><span style="color:#f92672">-</span><span style="color:#ae81ff">6.0.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">pacman</span><span style="color:#f92672">-</span><span style="color:#a6e22e">mirrorlist</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220116</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pam</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.5.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pambase</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20211210</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pciutils</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.7.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">pcre</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8.45</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pcre2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10.39</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">pinentry</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.2.0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">popt</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.18</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>  <span style="color:#a6e22e">procps</span><span style="color:#f92672">-</span><span style="color:#a6e22e">ng</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.3.17</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">psmisc</span><span style="color:#f92672">-</span><span style="color:#ae81ff">23.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">readline</span><span style="color:#f92672">-</span><span style="color:#ae81ff">8.1.002</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">sed</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">shadow</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4.11.1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">sqlite</span><span style="color:#f92672">-</span><span style="color:#ae81ff">3.37.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">systemd</span><span style="color:#f92672">-</span><span style="color:#ae81ff">250.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">systemd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">libs</span><span style="color:#f92672">-</span><span style="color:#ae81ff">250.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">systemd</span><span style="color:#f92672">-</span><span style="color:#a6e22e">sysvcompat</span><span style="color:#f92672">-</span><span style="color:#ae81ff">250.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>  <span style="color:#a6e22e">tar</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.34</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">tzdata</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2021e-1</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">util</span><span style="color:#f92672">-</span><span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.37.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">util</span><span style="color:#f92672">-</span><span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">libs</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2.37.4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">xz</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.2.5</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">zlib</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:<span style="color:#ae81ff">1.2.11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>  <span style="color:#a6e22e">zstd</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1.5.2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">base</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>  <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.16.10</span>.<span style="color:#a6e22e">arch1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>  <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#a6e22e">firmware</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20220209.6342082</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Total</span> <span style="color:#a6e22e">Download</span> <span style="color:#a6e22e">Size</span>:   <span style="color:#ae81ff">411.11</span> <span style="color:#a6e22e">MiB</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Total</span> <span style="color:#a6e22e">Installed</span> <span style="color:#a6e22e">Size</span>:  <span style="color:#ae81ff">803.18</span> <span style="color:#a6e22e">MiB</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Proceed</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">installation</span><span style="color:#960050;background-color:#1e0010">?</span> [<span style="color:#a6e22e">Y</span><span style="color:#f92672">/</span><span style="color:#a6e22e">n</span>]
+</span></span><span style="display:flex;"><span>:: <span style="color:#a6e22e">Retrieving</span> <span style="color:#a6e22e">packages</span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">linux</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5.16.10</span>.<span style="color:#a6e22e">arch1</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span><span style="color:#a6e22e">x86_64</span>                                                            <span style="color:#ae81ff">10.7</span> <span style="color:#a6e22e">MiB</span>  <span style="color:#ae81ff">1018</span> <span style="color:#a6e22e">KiB</span><span style="color:#f92672">/</span><span style="color:#a6e22e">s</span> <span style="color:#ae81ff">02</span>:<span style="color:#ae81ff">25</span> [<span style="color:#960050;background-color:#1e0010">####</span><span style="color:#f92672">------------------------------------------------------------------</span>]   <span style="color:#ae81ff">6</span><span style="color:#f92672">%</span>
+</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">Total</span> (  <span style="color:#ae81ff">0</span><span style="color:#f92672">/</span><span style="color:#ae81ff">117</span>)
+</span></span></code></pre></div><h2 id="生成fstab">生成fstab</h2>
+<blockquote>
+<p>自动将此文件中指定的文件系统挂载到指定的目录</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>genfstab -U /mnt &gt;&gt; /mnt/etc/fstab
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 检查一下
+</span></span><span style="display:flex;"><span>130 root@archiso ~ # cat /mnt/etc/fstab
+</span></span><span style="display:flex;"><span># Static information about the filesystems.
+</span></span><span style="display:flex;"><span># See fstab(5) for details.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;
+</span></span><span style="display:flex;"><span># /dev/sdb2
+</span></span><span style="display:flex;"><span>UUID=45791035-6204-4d58-8582-f7d8ad73f365	/         	btrfs     	rw,relatime,ssd,space_cache=v2,subvolid=5,subvol=/	0 0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># /dev/sda1
+</span></span><span style="display:flex;"><span>UUID=31948ff7-5066-484b-9f82-8fc1f3b0cc1b	/home     	btrfs     	rw,relatime,ssd,space_cache=v2,subvolid=5,subvol=/	0 0
+</span></span></code></pre></div><h2 id="chroot-到-mnt-ssd-环境-之前都是在u盘里">chroot 到 /mnt SSD 环境 【之前都是在U盘里】</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>root@archiso ~ # arch-chroot /mnt
+</span></span><span style="display:flex;"><span>[root@archiso /]#            #前面命令行显示改变了
+</span></span></code></pre></div><h2 id="设置时区">设置时区</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span><span style="display:flex;"><span># 时间同步给硬件
+</span></span><span style="display:flex;"><span>hwclock --systohc
+</span></span></code></pre></div><h2 id="安装nano-htop-intel-ucode等">安装nano htop intel-ucode等</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[root@archiso /]# pacman -S nano htop intel-ucode
+</span></span></code></pre></div><h2 id="安装dhcpcd-自动分配ip">安装dhcpcd 【自动分配IP】</h2>
+<blockquote>
+<p>iwd 连接WI-FI，但我台式机，不需要</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[root@archiso /]# pacman -S dhcpcd
+</span></span></code></pre></div><h2 id="本地化设置">本地化设置</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 修改 /etc/locale.gen，去掉en_US.UTF-8 UTF-8的注释
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[root@archiso /]# locale-gen
+</span></span><span style="display:flex;"><span>Generating locales...
+</span></span><span style="display:flex;"><span>  en_US.UTF-8... done
+</span></span><span style="display:flex;"><span>Generation complete.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 创建/etc/locale.conf文件，并在/etc/locale.conf文件中添加LANG=en_US.UTF-8
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 创建/etc/hostname,在文件中添加自己的主机名
+</span></span><span style="display:flex;"><span>nano /etc/hostname，比如添加archWork-Server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 在hosts中添加如下内容
+</span></span><span style="display:flex;"><span>nano /etc/hosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>127.0.0.1 localhost
+</span></span><span style="display:flex;"><span>::1     localhost
+</span></span><span style="display:flex;"><span>127.0.1.1       archWork-Server.localdomain archWork-Server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># 修改root密码
+</span></span><span style="display:flex;"><span>[root@archiso /]# passwd
+</span></span><span style="display:flex;"><span>New password:
+</span></span><span style="display:flex;"><span>Retype new password:
+</span></span><span style="display:flex;"><span>passwd: password updated successfully
+</span></span></code></pre></div><h2 id="创建引导-grub">创建引导 grub</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[root@archiso /]# pacman -S grub
+</span></span><span style="display:flex;"><span>resolving dependencies...
+</span></span><span style="display:flex;"><span>looking for conflicting packages...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Packages (1) grub-2:2.06-4
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Total Download Size:    6.74 MiB
+</span></span><span style="display:flex;"><span>Total Installed Size:  34.10 MiB
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:: Proceed with installation? [Y/n]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[root@archiso /]# grub-install  /dev/sdb
+</span></span><span style="display:flex;"><span>Installing for i386-pc platform.
+</span></span><span style="display:flex;"><span>Installation finished. No error reported.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[root@archiso /]# grub-mkconfig -o /boot/grub/grub.cfg
+</span></span><span style="display:flex;"><span>Generating grub configuration file ...
+</span></span><span style="display:flex;"><span>Warning: os-prober will not be executed to detect other bootable partitions.
+</span></span><span style="display:flex;"><span>Systems on them will not be added to the GRUB boot configuration.
+</span></span><span style="display:flex;"><span>Check GRUB_DISABLE_OS_PROBER documentation entry.
+</span></span><span style="display:flex;"><span>done
+</span></span></code></pre></div><h2 id="reboot-前准备">reboot 前准备</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 设置dhcp开机启动，如果有iwd也需要
+</span></span><span style="display:flex;"><span>[root@archiso /]# systemctl enable dhcpcd
+</span></span><span style="display:flex;"><span>Created symlink /etc/systemd/system/multi-user.target.wants/dhcpcd.service → /usr/lib/systemd/system/dhcpcd.service.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span># umount 之前挂在的分区
+</span></span><span style="display:flex;"><span>[root@archiso /]# exit
+</span></span><span style="display:flex;"><span>exit
+</span></span><span style="display:flex;"><span>arch-chroot /mnt  3.81s user 1.71s system 0% cpu 24:44.87 total
+</span></span><span style="display:flex;"><span>1 root@archiso ~ # umount -R /mnt
+</span></span></code></pre></div><h2 id="添加新用户">添加新用户</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>useradd -mG wheel -s /bin/bash xxx
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pacman -S sudo
+</span></span><span style="display:flex;"><span>nano /etc/sudoer
+</span></span><span style="display:flex;"><span># 删除 %wheel 前面的#号
+</span></span></code></pre></div>
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/linux">linux</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script></div>
+    </body>
+</html>
