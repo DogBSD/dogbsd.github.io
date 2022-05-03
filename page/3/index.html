@@ -56,14 +56,41 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/first/">First</a></h1>
-					<time>Jan 17, 2022</time>
+					<h1 class="title"><a href="/posts/debian11-install-postgresql13/">Debian11 Install Postgresql13</a></h1>
+					<time>Apr 11, 2022</time>
 					<br><div class="description">
 						
-						First Blog Post
+						学习一下Postgresql数据库
+ 安装数据流 # 安装 apt install postgresql postgresql-contrib  # 查看版本 sudo -u postgres psql -c &#34;SELECT version();&#34;    version ---------------------------------------------------------------------------------------------------------------------------  PostgreSQL 13.5 (Debian 13.5-0+deb11u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit (1 row) 查看已存在数据库 Postgresql安装完成后会自动创建一个postgres用户
+su - postgres //切换到postgres用户 psql //进入postgres命令交互 \l //查看所有已存在数据库   postgres=# \l  List of databases  Name | Owner | Encoding | Collate | Ctype | Access privileges -----------+----------+----------+------------+------------+-----------------------  postgres | postgres | UTF8 | en_US.&hellip;
 						
 					</div>
-					<a href="/posts/first/">Read more ⟶</a>
+					<a href="/posts/debian11-install-postgresql13/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Manjaro Kde Install Fcitx5 Zh_CN</a></h1>
+					<time>Feb 26, 2022</time>
+					<br><div class="description">
+						
+						安装完成之后注销/重启，添加pinyin输入法即可
+ 参考：知乎回答
+# 中文 # fcitx5-chinese-addons 包含了大量中文输入方式：拼音、双拼、五笔拼音、自然码、仓颉、冰蟾全息、二笔等  sudo pacman -S fcitx5-im fcitx5-chinese-addons sudo pacman -S fcitx5-pinyin-{zhwiki,moegirl}  # 欲在程序中正常启用 Fcitx5, 需设置以下环境变量，并重新登录： sudo nano ~/.pam_environment  GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx INPUT_METHOD DEFAULT=fcitx SDL_IM_MODULE DEFAULT=fcitx GLFW_IM_MODULE DEFAULT=ibus 其他详细配置参考：https://wiki.archlinux.org/title/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&hellip;
+						
+					</div>
+					<a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/arch-linux-install-dwm/">Arch Linux Install Dwm</a></h1>
+					<time>Feb 23, 2022</time>
+					<br><div class="description">
+						
+						接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config.&hellip;
+						
+					</div>
+					<a href="/posts/arch-linux-install-dwm/">Read more ⟶</a>
 				</section>
 				
 				
@@ -75,6 +102,8 @@
 	
 	</span>
 	<span class="page-item page-next">
+	
+    <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
 	
 	</span>
 </ul>

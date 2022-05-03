@@ -7,7 +7,59 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© CatBSD</copyright>
-    <lastBuildDate>Sat, 30 Apr 2022 20:40:53 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 May 2022 19:33:06 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang入门篇|4。数组和切片</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-4/</link>
+      <pubDate>Tue, 03 May 2022 19:33:06 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-4/</guid>
+      <description>数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &amp;#34;fmt&amp;#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&amp;#34;数组的长度:&amp;#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &amp;lt; len(a); i++ { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|3.流程控制语句</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-3/</link>
+      <pubDate>Tue, 03 May 2022 19:08:33 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-3/</guid>
+      <description>自增自减 ++ &amp;ndash; package main  import &amp;#34;fmt&amp;#34;  func main() { 	a := 0 	a++ // +1 	fmt.Println(a) // 1 	a-- // -1 	fmt.Println(a) // 0 } 条件语句 if else func main() { 	if i, ok := xxx.xxx; ok { // 高级用法 	fmt.Println(&amp;#34;当前为true&amp;#34;) 	} else { 	fmt.Println(&amp;#34;当前为false&amp;#34;) 	} } 选择语句 switch func main() { 	a := 1 	switch a { 	case 0: 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|2.Golang数据类型、关键字</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-2/</link>
+      <pubDate>Tue, 03 May 2022 18:23:26 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-2/</guid>
+      <description>Golang数据类型  整数类型  int int32 int64 //int默认平台的位数 uint uint32 uint64 //无符号整数 比如 从零开始 byte //字节类型 一般字节组成的数组 rune //是int32的别名，用来存储unicode编码 2.浮点类型
+float32 float64 ``  3.字符串类型 ```golang string // 被“”包裹的字符 4.布尔类型
+true false 简单判断当前变量的数据类型 package main  import &amp;#34;fmt&amp;#34;  func main() { 	var a string = &amp;#34;3.1415926&amp;#34; 	fmt.Printf(&amp;#34;%T \n&amp;#34;, a) // \n 为换行符，fmt包下的Printf格式化输出函数，%T 变量的类型 } 类型转换 // 一般可以转换的类型 float64 &amp;lt;==&amp;gt; int64 // 浮点转换为整型，小数点为直接丢失 int64 ==&amp;gt; string string == &amp;gt; int64 // 不是所有的string都可以转换，但var a string = &amp;#34;3.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|1.变量、包</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-1/</link>
+      <pubDate>Tue, 03 May 2022 17:48:25 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-1/</guid>
+      <description>于盖高楼，必筑其基；最近发现写代码有点困难，借此51长假，重修Golang基础篇！
+ 变量、常量 package main  import &amp;#34;fmt&amp;#34;  func main() { 	// 变量 	var a string = &amp;#34;Hello Golang!&amp;#34; // 数据类型string 	// 常量 	const b float32 = 5.03 // 浮点类型  	c := &amp;#34;Golang&amp;#34; // 变量隐式声明，不可用于全局变量的声明 	fmt.Println(a, b, c) }  简便声明多个变量的方式  var ( 	a = 1 	b = 2.2 	c = true )  // 如果为同种数据类型 var a, b, c, d = 1, 2, 23, 2 包 package  一个文件夹下不可以出现多个包，main包是程序的入口，其他包可以相互引入。一般文件夹名为包名； 如果一个包中的函数或者变量需要在其他包引入，则需要将变量var a string = &amp;quot;Hello Golang!</description>
+    </item>
+    
+    <item>
+      <title>Golang求生之路|log篇</title>
+      <link>https://dogbsd.github.io/posts/golang-log/</link>
+      <pubDate>Mon, 02 May 2022 20:13:28 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-log/</guid>
+      <description> 日志为了更好的记录用户或者程序自身运行时发生的报错或者重要事项记录，方便后期出现系统问题，更加方便的复现，从而辅助问题的修补；同时日志一般保留一定天数（7day，15day，30day)，也需要合理的清楚分割时日，分割间隔一般为 1day，时间过长，不方便后期查找。
+ </description>
+    </item>
+    
     <item>
       <title>Typescript Learning 1</title>
       <link>https://dogbsd.github.io/posts/typescript-learning/</link>

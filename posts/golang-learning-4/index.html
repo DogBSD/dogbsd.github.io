@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Golang入门篇|4。数组和切片 - CatBSD&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &lt; len(a); i&#43;&#43; { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Golang入门篇|4。数组和切片" />
+<meta property="og:description" content="数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &lt; len(a); i&#43;&#43; { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dogbsd.github.io/posts/golang-learning-4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-03T19:33:06+08:00" />
+<meta property="article:modified_time" content="2022-05-03T19:33:06+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang入门篇|4。数组和切片"/>
+<meta name="twitter:description" content="数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &lt; len(a); i&#43;&#43; { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt."/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Golang入门篇|4。数组和切片</h1>
+			<div class="meta">Posted on May 3, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			Golang入门篇|4。数组和切片
+		</div>
+
+		<section class="body">
+			<h2 id="数组-array">数组 array</h2>
+<blockquote>
+<p>把同类元素数组放入一个集合</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 定义一个数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>} <span style="color:#75715e">// 长度为3的，类型为int的数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;数组的长度:&#34;</span>, len(<span style="color:#a6e22e">arr</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>} <span style="color:#75715e">// 固定长度，不一定需要指定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 使用new的方式声明数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> = new([<span style="color:#ae81ff">10</span>]<span style="color:#66d9ef">int</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">5</span>] = <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>)
+</span></span></code></pre></div><ul>
+<li>
+<p>数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。</p>
+</li>
+<li>
+<p>数组的循环</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; len(<span style="color:#a6e22e">a</span>); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">i</span>])
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">a</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre></div><ul>
+<li>cap len</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 数组的长度和容量是相等的，因为数组不可以增加长度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">a</span>) <span style="color:#f92672">==</span> cap(<span style="color:#a6e22e">a</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;相等&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>二维数组</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#a6e22e">arr</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>][<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{ <span style="color:#75715e">// 第一个三：三个元素；第二个三：长度为三位的int类型的数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>}, <span style="color:#75715e">// 第一个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		{<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>},
+</span></span><span style="display:flex;"><span>		{<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>},
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#e6db74">&#34;长度：&#34;</span>, len(<span style="color:#a6e22e">arr</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">2</span>])
+</span></span></code></pre></div><h2 id="切片-slice">切片 slice</h2>
+<blockquote>
+<p>切片是数组的一部分</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">3</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>} <span style="color:#75715e">// 数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">cl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>:] <span style="color:#75715e">// 从数组上创建切片
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">cl</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">cl</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">cl</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>) <span style="color:#75715e">// 数组的值也发生了变化，所以切片是引用类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 切片的取值范围
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[:] <span style="color:#75715e">// 整个数组
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">2</span>] <span style="color:#75715e">// 不包括第三个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cl</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[:<span style="color:#ae81ff">2</span>] <span style="color:#75715e">// 不包括第三个元素
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 给切片增加一个值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cl</span> = append(<span style="color:#a6e22e">cl</span>, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 声明一个切片
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">aa</span> []<span style="color:#66d9ef">int</span> <span style="color:#75715e">// 切片
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">4</span>) <span style="color:#75715e">// 可以给一个长度，增加会变
+</span></span></span></code></pre></div>
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/golang">golang</a></li>
+					
+					<li><a href="/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87">Golang入门篇</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script></div>
+    </body>
+</html>

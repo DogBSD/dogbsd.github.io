@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang求生之路 on CatBSD&#39;s Blog</title>
+    <link>https://dogbsd.github.io/tags/golang%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/</link>
+    <description>Recent content in Golang求生之路 on CatBSD&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© CatBSD</copyright>
+    <lastBuildDate>Mon, 02 May 2022 20:13:28 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/golang%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang求生之路|log篇</title>
+      <link>https://dogbsd.github.io/posts/golang-log/</link>
+      <pubDate>Mon, 02 May 2022 20:13:28 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-log/</guid>
+      <description> 日志为了更好的记录用户或者程序自身运行时发生的报错或者重要事项记录，方便后期出现系统问题，更加方便的复现，从而辅助问题的修补；同时日志一般保留一定天数（7day，15day，30day)，也需要合理的清楚分割时日，分割间隔一般为 1day，时间过长，不方便后期查找。
+ </description>
+    </item>
+    
+  </channel>
+</rss>
