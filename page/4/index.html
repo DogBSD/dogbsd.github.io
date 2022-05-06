@@ -56,38 +56,39 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/arch-linux-bios-install/">Arch Linux BIOS Install</a></h1>
-					<time>Feb 23, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-5/">Golang入门篇|5.Map</a></h1>
+					<time>May 5, 2022</time>
 					<br><div class="description">
 						
-						主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
-  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, +0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd.&hellip;
+						三种声明方式 package main  import &#34;fmt&#34;  func main() { 	var m map[string]string // 简单声明 	m[&#34;bsd&#34;] = &#34;openbsd&#34;  	m1 := map[string]string{} 	m1[&#34;bsd&#34;] = &#34;openbsd&#34; 	m2 := make(map[string]string) 	m2[&#34;bsd&#34;] = &#34;openbsd&#34; 	fmt.Println(m, m1, m2) } map 高级定义数据类型 package main  import &#34;fmt&#34;  func main() {  	m1 := map[int]interface{}{} //定义接受任意数据类型 	m1[1] = &#34;openbsd&#34; 	m1[2] = []int{1, 2, 3, 4}  	fmt.&hellip;
 						
 					</div>
-					<a href="/posts/arch-linux-bios-install/">Read more ⟶</a>
+					<a href="/posts/golang-learning-5/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/linux-voice-dadada/">Linux Voice Dadada</a></h1>
-					<time>Jan 24, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-4/">Golang入门篇|4.数组和切片</a></h1>
+					<time>May 3, 2022</time>
 					<br><div class="description">
 						
-						 疑似音频接口进入节能模式
- sudo nano /sys/module/snd_hda_intel/parameters/power_save  # 将1改为0保存即可 &hellip;
+						数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &lt; len(a); i++ { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt.&hellip;
 						
 					</div>
-					<a href="/posts/linux-voice-dadada/">Read more ⟶</a>
+					<a href="/posts/golang-learning-4/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/first/">First</a></h1>
-					<time>Jan 17, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-3/">Golang入门篇|3.流程控制语句</a></h1>
+					<time>May 3, 2022</time>
 					<br><div class="description">
 						
-						First Blog Post
+						自增自减 ++ &ndash; package main  import &#34;fmt&#34;  func main() { 	a := 0 	a++ // +1 	fmt.Println(a) // 1 	a-- // -1 	fmt.Println(a) // 0 } 条件语句 if else func main() { 	if i, ok := xxx.xxx; ok { // 高级用法 	fmt.Println(&#34;当前为true&#34;) 	} else { 	fmt.Println(&#34;当前为false&#34;) 	} } 选择语句 switch func main() { 	a := 1 	switch a { 	case 0: 	fmt.&hellip;
 						
 					</div>
-					<a href="/posts/first/">Read more ⟶</a>
+					<a href="/posts/golang-learning-3/">Read more ⟶</a>
 				</section>
 				
 				
@@ -99,6 +100,8 @@
 	
 	</span>
 	<span class="page-item page-next">
+	
+    <a href="/page/5/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
 	
 	</span>
 </ul>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Golang入门篇|11.assertion、reflect - CatBSD&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="断言 assertion  把一个接口类型指定为它原始的类型
+ package main  import &#34;fmt&#34;  type User struct { 	Name string 	Age int 	Sex bool }  type Student struct { 	User // 匿名结构体 }  func (u User) SayName(name string) { 	fmt.Println(&#34;My Name: &#34;, name) }  func main() { 	u := User{ 	Name: &#34;bsd&#34;, 	Age: 18, 	Sex: true, 	} 	check(u) 	check1(u)  }  func check(v interface{}) { 	v." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Golang入门篇|11.assertion、reflect" />
+<meta property="og:description" content="断言 assertion  把一个接口类型指定为它原始的类型
+ package main  import &#34;fmt&#34;  type User struct { 	Name string 	Age int 	Sex bool }  type Student struct { 	User // 匿名结构体 }  func (u User) SayName(name string) { 	fmt.Println(&#34;My Name: &#34;, name) }  func main() { 	u := User{ 	Name: &#34;bsd&#34;, 	Age: 18, 	Sex: true, 	} 	check(u) 	check1(u)  }  func check(v interface{}) { 	v." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dogbsd.github.io/posts/golang-learning-11/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-06T03:32:24+08:00" />
+<meta property="article:modified_time" content="2022-05-06T03:32:24+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Golang入门篇|11.assertion、reflect"/>
+<meta name="twitter:description" content="断言 assertion  把一个接口类型指定为它原始的类型
+ package main  import &#34;fmt&#34;  type User struct { 	Name string 	Age int 	Sex bool }  type Student struct { 	User // 匿名结构体 }  func (u User) SayName(name string) { 	fmt.Println(&#34;My Name: &#34;, name) }  func main() { 	u := User{ 	Name: &#34;bsd&#34;, 	Age: 18, 	Sex: true, 	} 	check(u) 	check1(u)  }  func check(v interface{}) { 	v."/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Golang入门篇|11.assertion、reflect</h1>
+			<div class="meta">Posted on May 6, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			Golang入门篇|11.assertion、reflect
+		</div>
+
+		<section class="body">
+			<h1 id="断言-assertion">断言 assertion</h1>
+<blockquote>
+<p>把一个接口类型指定为它原始的类型</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">User</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Age</span>  <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Sex</span>  <span style="color:#66d9ef">bool</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">User</span> <span style="color:#75715e">// 匿名结构体
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">u</span> <span style="color:#a6e22e">User</span>) <span style="color:#a6e22e">SayName</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;My Name: &#34;</span>, <span style="color:#a6e22e">name</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">User</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Name</span>: <span style="color:#e6db74">&#34;bsd&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Age</span>:  <span style="color:#ae81ff">18</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Sex</span>:  <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">check</span>(<span style="color:#a6e22e">u</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">check1</span>(<span style="color:#a6e22e">u</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">check</span>(<span style="color:#a6e22e">v</span> <span style="color:#66d9ef">interface</span>{}) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">v</span>.(<span style="color:#a6e22e">User</span>).<span style="color:#a6e22e">SayName</span>(<span style="color:#e6db74">&#34;freebsd&#34;</span>) <span style="color:#75715e">//断言，主动告知程序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">check1</span>(<span style="color:#a6e22e">v</span> <span style="color:#66d9ef">interface</span>{}) { <span style="color:#75715e">// 断言类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">v</span>.(<span style="color:#66d9ef">type</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">User</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;我是User&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">Student</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Student&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;谁也不是&#34;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="反射-reflect">反射 reflect</h1>
+<blockquote>
+<p>在编译时不知道类型的情况下，可更新变量，运行时查看值，调用方法以及直接对他们的布局进行操作的机制，称为反射</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// refect.ValueOf() // 获取输入参数接口中的数据的值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// reflect.TypeOf() // 获取输入参数接口中的值的类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// reflect.ValueOf().Field(int) // 用来获取值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// reflect.ValueOf().Kind() // 用来判断类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// reflect.FieldByIndex([]int(0,1)) //层级去值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// reflect.ValueOF().Elem() // 获取原始数据并操作func check1(inter interface{}) {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">TypeOf</span>(<span style="color:#a6e22e">inter</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">reflect</span>.<span style="color:#a6e22e">ValueOf</span>(<span style="color:#a6e22e">inter</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">NumField</span>(); <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> { <span style="color:#75715e">// t.NumField()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Print</span>(<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">Field</span>(<span style="color:#a6e22e">i</span>))
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">v</span>.<span style="color:#a6e22e">FieldByIndex</span>([]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>}))
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">v</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87">Golang入门篇</a></li>
+					
+					<li><a href="/tags/golang">golang</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script></div>
+    </body>
+</html>

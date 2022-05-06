@@ -56,41 +56,38 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-1/">Golang入门篇|1.变量、包</a></h1>
-					<time>May 3, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-11/">Golang入门篇|11.assertion、reflect</a></h1>
+					<time>May 6, 2022</time>
 					<br><div class="description">
 						
-						于盖高楼，必筑其基；最近发现写代码有点困难，借此51长假，重修Golang基础篇！
- 变量、常量 package main  import &#34;fmt&#34;  func main() { 	// 变量 	var a string = &#34;Hello Golang!&#34; // 数据类型string 	// 常量 	const b float32 = 5.03 // 浮点类型  	c := &#34;Golang&#34; // 变量隐式声明，不可用于全局变量的声明 	fmt.Println(a, b, c) }  简便声明多个变量的方式  var ( 	a = 1 	b = 2.2 	c = true )  // 如果为同种数据类型 var a, b, c, d = 1, 2, 23, 2 包 package  一个文件夹下不可以出现多个包，main包是程序的入口，其他包可以相互引入。一般文件夹名为包名； 如果一个包中的函数或者变量需要在其他包引入，则需要将变量var a string = &quot;Hello Golang!&hellip;
+						断言 assertion  把一个接口类型指定为它原始的类型
+ package main  import &#34;fmt&#34;  type User struct { 	Name string 	Age int 	Sex bool }  type Student struct { 	User // 匿名结构体 }  func (u User) SayName(name string) { 	fmt.Println(&#34;My Name: &#34;, name) }  func main() { 	u := User{ 	Name: &#34;bsd&#34;, 	Age: 18, 	Sex: true, 	} 	check(u) 	check1(u)  }  func check(v interface{}) { 	v.&hellip;
 						
 					</div>
-					<a href="/posts/golang-learning-1/">Read more ⟶</a>
+					<a href="/posts/golang-learning-11/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-log/">Golang求生之路|log篇</a></h1>
-					<time>May 2, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-10/">Golang入门篇|10.goroutine、channel</a></h1>
+					<time>May 6, 2022</time>
 					<br><div class="description">
 						
-						 日志为了更好的记录用户或者程序自身运行时发生的报错或者重要事项记录，方便后期出现系统问题，更加方便的复现，从而辅助问题的修补；同时日志一般保留一定天数（7day，15day，30day)，也需要合理的清楚分割时日，分割间隔一般为 1day，时间过长，不方便后期查找。
- &hellip;
+						goroutine  在调用一个方法的前面加上go，比如 go add();会让方法一步执行，相当于协程 进程 &lt;&ndash;线程 &lt;&ndash;协程
+ 最简单的goroutine package main  import ( 	&#34;fmt&#34; 	&#34;time&#34; )  func main() { 	fmt.Println(&#34;Go&#34;) 	go Run() 	time.Sleep(time.Second) } func Run() { 	fmt.Println(&#34;Run&#34;) } 协程管理器 package main  import ( 	&#34;fmt&#34; 	&#34;sync&#34; )  var wg sync.WaitGroup  func main() { 	wg.Add(1) // 计数器+1 	go Run() 	wg.Wait() // 等待结束  } func Run() { 	fmt.&hellip;
 						
 					</div>
-					<a href="/posts/golang-log/">Read more ⟶</a>
+					<a href="/posts/golang-learning-10/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/typescript-learning/">Typescript Learning 1</a></h1>
-					<time>Apr 30, 2022</time>
+					<h1 class="title"><a href="/posts/golang-learning-9/">Golang入门篇|9.interface{}</a></h1>
+					<time>May 6, 2022</time>
 					<br><div class="description">
 						
-						今天，正式开始TypeScript的学习，祝我早日修成Vue神功！
-环境 笔电: MacBook Air (11-inch, Early 2014) OS: macOS 10.14.6 node: v16.14.2 tsc: Version 4.6.4 Code: _  tsc typescript complie
- Code Run 技巧 一个终端开实时编译：tsc 1.ts -w,另一个终端手动执行：node 1.js 查看结果
-  类型推断，函数接收值手动设置类型  // 无法确定值时（类型推断），编译器会认为是 any类型，可接收任意值，会造成代码不健壮 function sum(a:number ,b: number){  return a + b }  console.log(sum(222,3))  // 指定函数返回类型 function sum(a:number ,b: number): string{  return &#39;结果：&#39;+ a + b }  console.log(sum(222,3))  数组  let a = [&#39;sss&#39;] //string[] 数组里的值只能是string a.&hellip;
+						声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &#34;开始跑&#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &#34;开始吃&#34;) } 调用接口 package main  import &#34;fmt&#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.&hellip;
 						
 					</div>
-					<a href="/posts/typescript-learning/">Read more ⟶</a>
+					<a href="/posts/golang-learning-9/">Read more ⟶</a>
 				</section>
 				
 				

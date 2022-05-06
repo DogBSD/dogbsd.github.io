@@ -56,40 +56,39 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-8/">Golang入门篇|8.结构体</a></h1>
-					<time>May 6, 2022</time>
+					<h1 class="title"><a href="/posts/arch-linux-install-dwm/">Arch Linux Install Dwm</a></h1>
+					<time>Feb 23, 2022</time>
 					<br><div class="description">
 						
-						结构体是一个可以储存不同数据类型的数据类型
- 声明 package main  import &#34;fmt&#34;  type Person struct { 	Name string 	Age int 	Hobbies []string }  func main() { 	var p = Person{Name: &#34;bsd&#34;, Age: 40, Hobbies: []string{&#34;game&#34;, &#34;eat&#34;}} 	fmt.Println(p) // {bsd 40 [game eat]} }  // or 	p1 := new(Person) 	p1.Age = 12 	fmt.Println(p1) 结构体方法 package main  import &#34;fmt&#34;  type Person struct { 	Name string 	Age int 	Hobbies []string }  func (p Person) song(a string) (rest string) { 	fmt.&hellip;
+						接着上篇的Arch Linux环境基础安装后，进行安装dwm
+ 克隆 dwm Development code和st终端 # patch 打代码补丁 sudo pacman -S git make gcc patch git clone https://git.suckless.org/dwm git clone https://git.suckless.org/st git clone https://git.suckless.org/dmenu  [xxx@archWork-Server ~]$ tree dwm/ dwm/ ├── config.def.h ├── config.mk ├── drw.c ├── drw.h ├── dwm.1 ├── dwm.c ├── dwm.png ├── LICENSE ├── Makefile ├── README ├── transient.c ├── util.c └── util.h  [hang@archWork-Server ~]$ tree st st ├── arg.h ├── config.def.h ├── config.&hellip;
 						
 					</div>
-					<a href="/posts/golang-learning-8/">Read more ⟶</a>
+					<a href="/posts/arch-linux-install-dwm/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-7/">Golang入门篇|7.指针、地址</a></h1>
-					<time>May 6, 2022</time>
+					<h1 class="title"><a href="/posts/arch-linux-bios-install/">Arch Linux BIOS Install</a></h1>
+					<time>Feb 23, 2022</time>
 					<br><div class="description">
 						
-						 指针可以减少变量拷贝时的内存消耗
- package main  import &#34;fmt&#34;  func main() { 	// &amp; 地址符，* 取值符 	var a int 	a = 123 	fmt.Println(a) 	var b *int // *int int的指针类型 	b = &amp;a // 将a的地址赋值给b 	fmt.Println(b) 	fmt.Println(*b) // 打印b对应的指针类型的地址的值 }   // 指针参数传参  package main  import &#34;fmt&#34;  func main() { 	var b = 1 	fmt.Println(add(&amp;b))  }  func add(a *int) int { 	return *a + 1 } &hellip;
+						主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
+  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, +0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd.&hellip;
 						
 					</div>
-					<a href="/posts/golang-learning-7/">Read more ⟶</a>
+					<a href="/posts/arch-linux-bios-install/">Read more ⟶</a>
 				</section>
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-6/">Golang入门篇|6.func 函数</a></h1>
-					<time>May 5, 2022</time>
+					<h1 class="title"><a href="/posts/linux-voice-dadada/">Linux Voice Dadada</a></h1>
+					<time>Jan 24, 2022</time>
 					<br><div class="description">
 						
-						将特定的方法写成函数，方便多次调用，同时保持了代码的整洁性。
- 定义Func // Add 大写，暴露出去，应许其他包调用 func Add(a, b int) int { // a,b 为接收参数（入参），int 返回参数 	return a + b // 返回一个int值，符合返回参数的定义 }  // 调用 fmt.Println(Add(1,2)) // 3 匿名函数  可以在main()中书写的函数
- package main  import &#34;fmt&#34;  func main() { 	a1 := func(str string) { // 匿名函数没有函数名 	fmt.Println(str) 	} 	a1(&#34;GOlang&#34;) } 不定向参数 func dd(a int, b ...string) { //不定向参数必须放在最后 	fmt.Println(a, b)  	for k, v := range b { 	fmt.&hellip;
+						 疑似音频接口进入节能模式
+ sudo nano /sys/module/snd_hda_intel/parameters/power_save  # 将1改为0保存即可 &hellip;
 						
 					</div>
-					<a href="/posts/golang-learning-6/">Read more ⟶</a>
+					<a href="/posts/linux-voice-dadada/">Read more ⟶</a>
 				</section>
 				
 				
@@ -97,12 +96,12 @@
 <ul class="pagination">
 	<span class="page-item page-prev">
 	
-    <a href="/page/2/" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev</span></a>
+    <a href="/page/6/" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev</span></a>
 	
 	</span>
 	<span class="page-item page-next">
 	
-    <a href="/page/4/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
+    <a href="/page/8/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
 	
 	</span>
 </ul>

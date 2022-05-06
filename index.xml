@@ -7,9 +7,106 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© CatBSD</copyright>
-    <lastBuildDate>Tue, 03 May 2022 19:33:06 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 May 2022 00:48:56 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Golang入门篇|4。数组和切片</title>
+      <title>Golang入门篇|14.tcp</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-14/</link>
+      <pubDate>Sat, 07 May 2022 00:48:56 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-14/</guid>
+      <description>server  package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;log&amp;#34; 	&amp;#34;net&amp;#34; )  func main() { 	tcpAddr, _ := net.ResolveTCPAddr(&amp;#34;tcp&amp;#34;, &amp;#34;:8080&amp;#34;) 	listener, _ := net.ListenTCP(&amp;#34;tcp&amp;#34;, tcpAddr)  	for { 	Conn, err := listener.AcceptTCP() 	if err != nil { 	log.Fatal(err) 	return 	} 	go handleConnection(Conn) 	} }  func handleConnection(conn *net.TCPConn) { 	for{ 	buf := make([]byte, 1024) 	n,err := conn.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|13.文件的操作</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-13/</link>
+      <pubDate>Sat, 07 May 2022 00:13:50 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-13/</guid>
+      <description>未完，等有空再学习一下
+package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;log&amp;#34; 	&amp;#34;os&amp;#34; )  func main() { 	f, err := os.OpenFile(&amp;#34;./test.txt&amp;#34;, os.O_CREATE|os.O_RDWR, 0777) 	if err != nil { 	log.Fatal(err) 	return 	} 	for { 	b := make([]byte, 12) 	n, err := f.Read(b) 	if err != nil { 	fmt.Println(err) 	return 	} 	fmt.Println(string(b), n) 	} } </description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|12.并发编程sync</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-12/</link>
+      <pubDate>Fri, 06 May 2022 03:37:09 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-12/</guid>
+      <description>Mutex 互斥锁、RWMutex 读写互斥锁 package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;sync&amp;#34; 	&amp;#34;time&amp;#34; )  func main() { 	SyncClass() }  func SyncClass() { 	l := &amp;amp;sync.RWMutex{} 	go lockFun(l) 	go lockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l)  	for { 	} } func lockFun(lock *sync.RWMutex) { 	lock.Lock() // 上锁 	fmt.Println(&amp;#34;疯狂刮痧&amp;#34;) 	time.Sleep(time.Second) 	lock.Unlock() // 解锁 } func readLockFun(lock *sync.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|11.assertion、reflect</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-11/</link>
+      <pubDate>Fri, 06 May 2022 03:32:24 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-11/</guid>
+      <description>断言 assertion  把一个接口类型指定为它原始的类型
+ package main  import &amp;#34;fmt&amp;#34;  type User struct { 	Name string 	Age int 	Sex bool }  type Student struct { 	User // 匿名结构体 }  func (u User) SayName(name string) { 	fmt.Println(&amp;#34;My Name: &amp;#34;, name) }  func main() { 	u := User{ 	Name: &amp;#34;bsd&amp;#34;, 	Age: 18, 	Sex: true, 	} 	check(u) 	check1(u)  }  func check(v interface{}) { 	v.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|10.goroutine、channel</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-10/</link>
+      <pubDate>Fri, 06 May 2022 02:06:18 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-10/</guid>
+      <description>goroutine  在调用一个方法的前面加上go，比如 go add();会让方法一步执行，相当于协程 进程 &amp;lt;&amp;ndash;线程 &amp;lt;&amp;ndash;协程
+ 最简单的goroutine package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;time&amp;#34; )  func main() { 	fmt.Println(&amp;#34;Go&amp;#34;) 	go Run() 	time.Sleep(time.Second) } func Run() { 	fmt.Println(&amp;#34;Run&amp;#34;) } 协程管理器 package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;sync&amp;#34; )  var wg sync.WaitGroup  func main() { 	wg.Add(1) // 计数器+1 	go Run() 	wg.Wait() // 等待结束  } func Run() { 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|9.interface{}</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-9/</link>
+      <pubDate>Fri, 06 May 2022 02:00:54 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-9/</guid>
+      <description>声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &amp;#34;开始跑&amp;#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &amp;#34;开始吃&amp;#34;) } 调用接口 package main  import &amp;#34;fmt&amp;#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|8.结构体</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-8/</link>
+      <pubDate>Fri, 06 May 2022 01:24:29 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-8/</guid>
+      <description>结构体是一个可以储存不同数据类型的数据类型
+ 声明 package main  import &amp;#34;fmt&amp;#34;  type Person struct { 	Name string 	Age int 	Hobbies []string }  func main() { 	var p = Person{Name: &amp;#34;bsd&amp;#34;, Age: 40, Hobbies: []string{&amp;#34;game&amp;#34;, &amp;#34;eat&amp;#34;}} 	fmt.Println(p) // {bsd 40 [game eat]} }  // or 	p1 := new(Person) 	p1.Age = 12 	fmt.Println(p1) 结构体方法 package main  import &amp;#34;fmt&amp;#34;  type Person struct { 	Name string 	Age int 	Hobbies []string }  func (p Person) song(a string) (rest string) { 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|7.指针、地址</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-7/</link>
+      <pubDate>Fri, 06 May 2022 00:51:54 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-7/</guid>
+      <description> 指针可以减少变量拷贝时的内存消耗
+ package main  import &amp;#34;fmt&amp;#34;  func main() { 	// &amp;amp; 地址符，* 取值符 	var a int 	a = 123 	fmt.Println(a) 	var b *int // *int int的指针类型 	b = &amp;amp;a // 将a的地址赋值给b 	fmt.Println(b) 	fmt.Println(*b) // 打印b对应的指针类型的地址的值 }   // 指针参数传参  package main  import &amp;#34;fmt&amp;#34;  func main() { 	var b = 1 	fmt.Println(add(&amp;amp;b))  }  func add(a *int) int { 	return *a + 1 } </description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|6.func 函数</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-6/</link>
+      <pubDate>Thu, 05 May 2022 06:15:59 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-6/</guid>
+      <description>将特定的方法写成函数，方便多次调用，同时保持了代码的整洁性。
+ 定义Func // Add 大写，暴露出去，应许其他包调用 func Add(a, b int) int { // a,b 为接收参数（入参），int 返回参数 	return a + b // 返回一个int值，符合返回参数的定义 }  // 调用 fmt.Println(Add(1,2)) // 3 匿名函数  可以在main()中书写的函数
+ package main  import &amp;#34;fmt&amp;#34;  func main() { 	a1 := func(str string) { // 匿名函数没有函数名 	fmt.Println(str) 	} 	a1(&amp;#34;GOlang&amp;#34;) } 不定向参数 func dd(a int, b ...string) { //不定向参数必须放在最后 	fmt.Println(a, b)  	for k, v := range b { 	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|5.Map</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-5/</link>
+      <pubDate>Thu, 05 May 2022 05:51:46 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-5/</guid>
+      <description>三种声明方式 package main  import &amp;#34;fmt&amp;#34;  func main() { 	var m map[string]string // 简单声明 	m[&amp;#34;bsd&amp;#34;] = &amp;#34;openbsd&amp;#34;  	m1 := map[string]string{} 	m1[&amp;#34;bsd&amp;#34;] = &amp;#34;openbsd&amp;#34; 	m2 := make(map[string]string) 	m2[&amp;#34;bsd&amp;#34;] = &amp;#34;openbsd&amp;#34; 	fmt.Println(m, m1, m2) } map 高级定义数据类型 package main  import &amp;#34;fmt&amp;#34;  func main() {  	m1 := map[int]interface{}{} //定义接受任意数据类型 	m1[1] = &amp;#34;openbsd&amp;#34; 	m1[2] = []int{1, 2, 3, 4}  	fmt.</description>
+    </item>
+    
+    <item>
+      <title>Golang入门篇|4.数组和切片</title>
       <link>https://dogbsd.github.io/posts/golang-learning-4/</link>
       <pubDate>Tue, 03 May 2022 19:33:06 +0800</pubDate>
       

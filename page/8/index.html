@@ -56,37 +56,14 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-14/">Golang入门篇|14.tcp</a></h1>
-					<time>May 7, 2022</time>
+					<h1 class="title"><a href="/posts/first/">First</a></h1>
+					<time>Jan 17, 2022</time>
 					<br><div class="description">
 						
-						server  package main  import ( 	&#34;fmt&#34; 	&#34;log&#34; 	&#34;net&#34; )  func main() { 	tcpAddr, _ := net.ResolveTCPAddr(&#34;tcp&#34;, &#34;:8080&#34;) 	listener, _ := net.ListenTCP(&#34;tcp&#34;, tcpAddr)  	for { 	Conn, err := listener.AcceptTCP() 	if err != nil { 	log.Fatal(err) 	return 	} 	go handleConnection(Conn) 	} }  func handleConnection(conn *net.TCPConn) { 	for{ 	buf := make([]byte, 1024) 	n,err := conn.&hellip;
+						First Blog Post
 						
 					</div>
-					<a href="/posts/golang-learning-14/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-13/">Golang入门篇|13.文件的操作</a></h1>
-					<time>May 7, 2022</time>
-					<br><div class="description">
-						
-						未完，等有空再学习一下
-package main  import ( 	&#34;fmt&#34; 	&#34;log&#34; 	&#34;os&#34; )  func main() { 	f, err := os.OpenFile(&#34;./test.txt&#34;, os.O_CREATE|os.O_RDWR, 0777) 	if err != nil { 	log.Fatal(err) 	return 	} 	for { 	b := make([]byte, 12) 	n, err := f.Read(b) 	if err != nil { 	fmt.Println(err) 	return 	} 	fmt.Println(string(b), n) 	} } &hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-13/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-12/">Golang入门篇|12.并发编程sync</a></h1>
-					<time>May 6, 2022</time>
-					<br><div class="description">
-						
-						Mutex 互斥锁、RWMutex 读写互斥锁 package main  import ( 	&#34;fmt&#34; 	&#34;sync&#34; 	&#34;time&#34; )  func main() { 	SyncClass() }  func SyncClass() { 	l := &amp;sync.RWMutex{} 	go lockFun(l) 	go lockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l)  	for { 	} } func lockFun(lock *sync.RWMutex) { 	lock.Lock() // 上锁 	fmt.Println(&#34;疯狂刮痧&#34;) 	time.Sleep(time.Second) 	lock.Unlock() // 解锁 } func readLockFun(lock *sync.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-12/">Read more ⟶</a>
+					<a href="/posts/first/">Read more ⟶</a>
 				</section>
 				
 				
@@ -94,10 +71,10 @@ package main  import ( 	&#34;fmt&#34; 	&#34;log&#34; 	&#34;os&#34; )  func main(
 <ul class="pagination">
 	<span class="page-item page-prev">
 	
+    <a href="/page/7/" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev</span></a>
+	
 	</span>
 	<span class="page-item page-next">
-	
-    <a href="/page/2/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
 	
 	</span>
 </ul>

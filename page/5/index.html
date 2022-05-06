@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta name="generator" content="Hugo 0.96.0" />
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CatBSD&#39;s Blog | Home </title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="" />
+	<meta property="og:image" content=""/>
+	<link rel="alternate" type="application/rss+xml" href="https://dogbsd.github.io/index.xml" title="CatBSD's Blog" />
+	<meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dogbsd.github.io/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content=""/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+
+	<body>
+		<div class="content">
+			<header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+			
+			<main class="list">
+				<div class="site-description"><p>Are you OK?    <a href="https://github.com/dogbsd">No.</a></p></div>
+				
+				
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-2/">Golang入门篇|2.Golang数据类型、关键字</a></h1>
+					<time>May 3, 2022</time>
+					<br><div class="description">
+						
+						Golang数据类型  整数类型  int int32 int64 //int默认平台的位数 uint uint32 uint64 //无符号整数 比如 从零开始 byte //字节类型 一般字节组成的数组 rune //是int32的别名，用来存储unicode编码 2.浮点类型
+float32 float64 ``  3.字符串类型 ```golang string // 被“”包裹的字符 4.布尔类型
+true false 简单判断当前变量的数据类型 package main  import &#34;fmt&#34;  func main() { 	var a string = &#34;3.1415926&#34; 	fmt.Printf(&#34;%T \n&#34;, a) // \n 为换行符，fmt包下的Printf格式化输出函数，%T 变量的类型 } 类型转换 // 一般可以转换的类型 float64 &lt;==&gt; int64 // 浮点转换为整型，小数点为直接丢失 int64 ==&gt; string string == &gt; int64 // 不是所有的string都可以转换，但var a string = &#34;3.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-2/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-1/">Golang入门篇|1.变量、包</a></h1>
+					<time>May 3, 2022</time>
+					<br><div class="description">
+						
+						于盖高楼，必筑其基；最近发现写代码有点困难，借此51长假，重修Golang基础篇！
+ 变量、常量 package main  import &#34;fmt&#34;  func main() { 	// 变量 	var a string = &#34;Hello Golang!&#34; // 数据类型string 	// 常量 	const b float32 = 5.03 // 浮点类型  	c := &#34;Golang&#34; // 变量隐式声明，不可用于全局变量的声明 	fmt.Println(a, b, c) }  简便声明多个变量的方式  var ( 	a = 1 	b = 2.2 	c = true )  // 如果为同种数据类型 var a, b, c, d = 1, 2, 23, 2 包 package  一个文件夹下不可以出现多个包，main包是程序的入口，其他包可以相互引入。一般文件夹名为包名； 如果一个包中的函数或者变量需要在其他包引入，则需要将变量var a string = &quot;Hello Golang!&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-1/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-log/">Golang求生之路|log篇</a></h1>
+					<time>May 2, 2022</time>
+					<br><div class="description">
+						
+						 日志为了更好的记录用户或者程序自身运行时发生的报错或者重要事项记录，方便后期出现系统问题，更加方便的复现，从而辅助问题的修补；同时日志一般保留一定天数（7day，15day，30day)，也需要合理的清楚分割时日，分割间隔一般为 1day，时间过长，不方便后期查找。
+ &hellip;
+						
+					</div>
+					<a href="/posts/golang-log/">Read more ⟶</a>
+				</section>
+				
+				
+
+<ul class="pagination">
+	<span class="page-item page-prev">
+	
+    <a href="/page/4/" class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev</span></a>
+	
+	</span>
+	<span class="page-item page-next">
+	
+    <a href="/page/6/" class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
+	
+	</span>
+</ul>
+
+
+			</main>
+			<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script>
+		</div>
+		
+	</body>
+</html>

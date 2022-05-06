@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang入门篇 golang on CatBSD&#39;s Blog</title>
+    <link>https://dogbsd.github.io/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87-golang/</link>
+    <description>Recent content in Golang入门篇 golang on CatBSD&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© CatBSD</copyright>
+    <lastBuildDate>Fri, 06 May 2022 02:00:54 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87-golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang入门篇|9.interface{}</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-9/</link>
+      <pubDate>Fri, 06 May 2022 02:00:54 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-9/</guid>
+      <description>声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &amp;#34;开始跑&amp;#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &amp;#34;开始吃&amp;#34;) } 调用接口 package main  import &amp;#34;fmt&amp;#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.</description>
+    </item>
+    
+  </channel>
+</rss>
