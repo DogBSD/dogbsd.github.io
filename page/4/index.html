@@ -56,6 +56,19 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-6/">Golang入门篇|6.func 函数</a></h1>
+					<time>May 5, 2022</time>
+					<br><div class="description">
+						
+						将特定的方法写成函数，方便多次调用，同时保持了代码的整洁性。
+ 定义Func // Add 大写，暴露出去，应许其他包调用 func Add(a, b int) int { // a,b 为接收参数（入参），int 返回参数 	return a + b // 返回一个int值，符合返回参数的定义 }  // 调用 fmt.Println(Add(1,2)) // 3 匿名函数  可以在main()中书写的函数
+ package main  import &#34;fmt&#34;  func main() { 	a1 := func(str string) { // 匿名函数没有函数名 	fmt.Println(str) 	} 	a1(&#34;GOlang&#34;) } 不定向参数 func dd(a int, b ...string) { //不定向参数必须放在最后 	fmt.Println(a, b)  	for k, v := range b { 	fmt.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-6/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-5/">Golang入门篇|5.Map</a></h1>
 					<time>May 5, 2022</time>
 					<br><div class="description">
@@ -78,17 +91,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-4/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-3/">Golang入门篇|3.流程控制语句</a></h1>
-					<time>May 3, 2022</time>
-					<br><div class="description">
-						
-						自增自减 ++ &ndash; package main  import &#34;fmt&#34;  func main() { 	a := 0 	a++ // +1 	fmt.Println(a) // 1 	a-- // -1 	fmt.Println(a) // 0 } 条件语句 if else func main() { 	if i, ok := xxx.xxx; ok { // 高级用法 	fmt.Println(&#34;当前为true&#34;) 	} else { 	fmt.Println(&#34;当前为false&#34;) 	} } 选择语句 switch func main() { 	a := 1 	switch a { 	case 0: 	fmt.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-3/">Read more ⟶</a>
 				</section>
 				
 				

@@ -56,6 +56,19 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Manjaro Kde Install Fcitx5 Zh_CN</a></h1>
+					<time>Feb 26, 2022</time>
+					<br><div class="description">
+						
+						安装完成之后注销/重启，添加pinyin输入法即可
+ 参考：知乎回答
+# 中文 # fcitx5-chinese-addons 包含了大量中文输入方式：拼音、双拼、五笔拼音、自然码、仓颉、冰蟾全息、二笔等  sudo pacman -S fcitx5-im fcitx5-chinese-addons sudo pacman -S fcitx5-pinyin-{zhwiki,moegirl}  # 欲在程序中正常启用 Fcitx5, 需设置以下环境变量，并重新登录： sudo nano ~/.pam_environment  GTK_IM_MODULE DEFAULT=fcitx QT_IM_MODULE DEFAULT=fcitx XMODIFIERS DEFAULT=\@im=fcitx INPUT_METHOD DEFAULT=fcitx SDL_IM_MODULE DEFAULT=fcitx GLFW_IM_MODULE DEFAULT=ibus 其他详细配置参考：https://wiki.archlinux.org/title/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)&hellip;
+						
+					</div>
+					<a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/arch-linux-install-dwm/">Arch Linux Install Dwm</a></h1>
 					<time>Feb 23, 2022</time>
 					<br><div class="description">
@@ -77,18 +90,6 @@
 						
 					</div>
 					<a href="/posts/arch-linux-bios-install/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/linux-voice-dadada/">Linux Voice Dadada</a></h1>
-					<time>Jan 24, 2022</time>
-					<br><div class="description">
-						
-						 疑似音频接口进入节能模式
- sudo nano /sys/module/snd_hda_intel/parameters/power_save  # 将1改为0保存即可 &hellip;
-						
-					</div>
-					<a href="/posts/linux-voice-dadada/">Read more ⟶</a>
 				</section>
 				
 				

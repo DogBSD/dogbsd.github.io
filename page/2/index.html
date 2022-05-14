@@ -56,6 +56,17 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-12/">Golang入门篇|12.并发编程sync</a></h1>
+					<time>May 6, 2022</time>
+					<br><div class="description">
+						
+						Mutex 互斥锁、RWMutex 读写互斥锁 package main  import ( 	&#34;fmt&#34; 	&#34;sync&#34; 	&#34;time&#34; )  func main() { 	SyncClass() }  func SyncClass() { 	l := &amp;sync.RWMutex{} 	go lockFun(l) 	go lockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l) 	go readLockFun(l)  	for { 	} } func lockFun(lock *sync.RWMutex) { 	lock.Lock() // 上锁 	fmt.Println(&#34;疯狂刮痧&#34;) 	time.Sleep(time.Second) 	lock.Unlock() // 解锁 } func readLockFun(lock *sync.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-12/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-11/">Golang入门篇|11.assertion、reflect</a></h1>
 					<time>May 6, 2022</time>
 					<br><div class="description">
@@ -77,17 +88,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-10/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-9/">Golang入门篇|9.interface{}</a></h1>
-					<time>May 6, 2022</time>
-					<br><div class="description">
-						
-						声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &#34;开始跑&#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &#34;开始吃&#34;) } 调用接口 package main  import &#34;fmt&#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-9/">Read more ⟶</a>
 				</section>
 				
 				

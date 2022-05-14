@@ -7,7 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© CatBSD</copyright>
-    <lastBuildDate>Sat, 07 May 2022 00:48:56 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 May 2022 19:08:35 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pip安装以来报错</title>
+      <link>https://dogbsd.github.io/posts/pip-install-error/</link>
+      <pubDate>Sat, 14 May 2022 19:08:35 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/pip-install-error/</guid>
+      <description> 使用pip安装以来出现了No space left on device错误
+ Collecting Pillow==8.2.0  Using cached Pillow-8.2.0.tar.gz (47.9 MB) ERROR: Could not install packages due to an OSError: [Errno 28] No space left on device 解决方法 转载：https://www.programminghunter.com/article/9003348245/
+mkdir -p $HOME/tmp echo &amp;#34;export TMPDIR=$HOME/tmp&amp;#34; &amp;gt;&amp;gt; ~/.bashrc source ~/.bashrc </description>
+    </item>
+    
     <item>
       <title>Golang入门篇|14.tcp</title>
       <link>https://dogbsd.github.io/posts/golang-learning-14/</link>

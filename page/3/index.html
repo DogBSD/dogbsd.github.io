@@ -56,6 +56,17 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-9/">Golang入门篇|9.interface{}</a></h1>
+					<time>May 6, 2022</time>
+					<br><div class="description">
+						
+						声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &#34;开始跑&#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &#34;开始吃&#34;) } 调用接口 package main  import &#34;fmt&#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-9/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-8/">Golang入门篇|8.结构体</a></h1>
 					<time>May 6, 2022</time>
 					<br><div class="description">
@@ -77,19 +88,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-7/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-6/">Golang入门篇|6.func 函数</a></h1>
-					<time>May 5, 2022</time>
-					<br><div class="description">
-						
-						将特定的方法写成函数，方便多次调用，同时保持了代码的整洁性。
- 定义Func // Add 大写，暴露出去，应许其他包调用 func Add(a, b int) int { // a,b 为接收参数（入参），int 返回参数 	return a + b // 返回一个int值，符合返回参数的定义 }  // 调用 fmt.Println(Add(1,2)) // 3 匿名函数  可以在main()中书写的函数
- package main  import &#34;fmt&#34;  func main() { 	a1 := func(str string) { // 匿名函数没有函数名 	fmt.Println(str) 	} 	a1(&#34;GOlang&#34;) } 不定向参数 func dd(a int, b ...string) { //不定向参数必须放在最后 	fmt.Println(a, b)  	for k, v := range b { 	fmt.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-6/">Read more ⟶</a>
 				</section>
 				
 				
