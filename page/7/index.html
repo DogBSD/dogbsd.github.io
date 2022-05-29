@@ -56,6 +56,19 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/debian11-install-postgresql13/">Debian11 Install Postgresql13</a></h1>
+					<time>Apr 11, 2022</time>
+					<br><div class="description">
+						
+						学习一下Postgresql数据库
+ 安装数据流 # 安装 apt install postgresql postgresql-contrib  # 查看版本 sudo -u postgres psql -c &#34;SELECT version();&#34;    version ---------------------------------------------------------------------------------------------------------------------------  PostgreSQL 13.5 (Debian 13.5-0+deb11u1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit (1 row) 查看已存在数据库 Postgresql安装完成后会自动创建一个postgres用户
+su - postgres //切换到postgres用户 psql //进入postgres命令交互 \l //查看所有已存在数据库   postgres=# \l  List of databases  Name | Owner | Encoding | Collate | Ctype | Access privileges -----------+----------+----------+------------+------------+-----------------------  postgres | postgres | UTF8 | en_US.&hellip;
+						
+					</div>
+					<a href="/posts/debian11-install-postgresql13/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/manjaro-kde-install-fcitx5-zh_cn/">Manjaro Kde Install Fcitx5 Zh_CN</a></h1>
 					<time>Feb 26, 2022</time>
 					<br><div class="description">
@@ -78,18 +91,6 @@
 						
 					</div>
 					<a href="/posts/arch-linux-install-dwm/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/arch-linux-bios-install/">Arch Linux BIOS Install</a></h1>
-					<time>Feb 23, 2022</time>
-					<br><div class="description">
-						
-						主要是记录一下，安装Arch Linux 难度非常小&hellip; 不是觉得Gentoo编译E5垃圾U太慢，就不会再装Arch。
-  安装Arch 基本检查  ping  ping baidu.com  time  root@archiso ~ # timedatectl status  Local time: Wed 2022-02-23 17:36:37 UTC  Universal time: Wed 2022-02-23 17:36:37 UTC  RTC time: Wed 2022-02-23 17:36:37  Time zone: UTC (UTC, +0000) System clock synchronized: no  NTP service: inactive  RTC in local TZ: no  ssh [非必需]  root@archiso ~ # systemctl status sshd ● sshd.&hellip;
-						
-					</div>
-					<a href="/posts/arch-linux-bios-install/">Read more ⟶</a>
 				</section>
 				
 				

@@ -56,6 +56,18 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-10/">Golang入门篇|10.goroutine、channel</a></h1>
+					<time>May 6, 2022</time>
+					<br><div class="description">
+						
+						goroutine  在调用一个方法的前面加上go，比如 go add();会让方法一步执行，相当于协程 进程 &lt;&ndash;线程 &lt;&ndash;协程
+ 最简单的goroutine package main  import ( 	&#34;fmt&#34; 	&#34;time&#34; )  func main() { 	fmt.Println(&#34;Go&#34;) 	go Run() 	time.Sleep(time.Second) } func Run() { 	fmt.Println(&#34;Run&#34;) } 协程管理器 package main  import ( 	&#34;fmt&#34; 	&#34;sync&#34; )  var wg sync.WaitGroup  func main() { 	wg.Add(1) // 计数器+1 	go Run() 	wg.Wait() // 等待结束  } func Run() { 	fmt.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-10/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-9/">Golang入门篇|9.interface{}</a></h1>
 					<time>May 6, 2022</time>
 					<br><div class="description">
@@ -76,18 +88,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-8/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-7/">Golang入门篇|7.指针、地址</a></h1>
-					<time>May 6, 2022</time>
-					<br><div class="description">
-						
-						 指针可以减少变量拷贝时的内存消耗
- package main  import &#34;fmt&#34;  func main() { 	// &amp; 地址符，* 取值符 	var a int 	a = 123 	fmt.Println(a) 	var b *int // *int int的指针类型 	b = &amp;a // 将a的地址赋值给b 	fmt.Println(b) 	fmt.Println(*b) // 打印b对应的指针类型的地址的值 }   // 指针参数传参  package main  import &#34;fmt&#34;  func main() { 	var b = 1 	fmt.Println(add(&amp;b))  }  func add(a *int) int { 	return *a + 1 } &hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-7/">Read more ⟶</a>
 				</section>
 				
 				

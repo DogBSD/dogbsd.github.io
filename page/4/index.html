@@ -56,6 +56,18 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-7/">Golang入门篇|7.指针、地址</a></h1>
+					<time>May 6, 2022</time>
+					<br><div class="description">
+						
+						 指针可以减少变量拷贝时的内存消耗
+ package main  import &#34;fmt&#34;  func main() { 	// &amp; 地址符，* 取值符 	var a int 	a = 123 	fmt.Println(a) 	var b *int // *int int的指针类型 	b = &amp;a // 将a的地址赋值给b 	fmt.Println(b) 	fmt.Println(*b) // 打印b对应的指针类型的地址的值 }   // 指针参数传参  package main  import &#34;fmt&#34;  func main() { 	var b = 1 	fmt.Println(add(&amp;b))  }  func add(a *int) int { 	return *a + 1 } &hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-7/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-6/">Golang入门篇|6.func 函数</a></h1>
 					<time>May 5, 2022</time>
 					<br><div class="description">
@@ -77,20 +89,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-5/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-4/">Golang入门篇|4.数组和切片</a></h1>
-					<time>May 3, 2022</time>
-					<br><div class="description">
-						
-						数组 array  把同类元素数组放入一个集合
- // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
-  数组的循环
-  	for i := 0; i &lt; len(a); i++ { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-4/">Read more ⟶</a>
 				</section>
 				
 				

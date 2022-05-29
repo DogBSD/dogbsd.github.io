@@ -56,6 +56,18 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/ssh-keys-on-debian/">使用SSH密钥快捷登录Debian</a></h1>
+					<time>May 29, 2022</time>
+					<br><div class="description">
+						
+						用密钥登陆的好处：1.安全 2.不用输入密码&hellip;
+查看本机的密钥文件 MacBook-Air:blog catbsd$ ls ~/.ssh/ id_rsa id_rsa.pub known_hosts   # id_rsa 密钥，十分的重要 # id_rsa.pub 公钥 密钥文件不存在，创建密钥 ssh-keygen -t rsa -b 4096 -C &#34;your_email@domain.com&#34;  # rsa 数字签名方式，还有其他：RSA，DSA，ECDSA，EdDSA和Ed25519 都用于数字签名 # 4096 指定了生成的密钥位数，默认2048 # id_rsa 代表就是用rsa签名生成的密钥   # 会提示你时候输入密码 (如果输入了，每次登陆的ssh的时候都要进行输入密码，默认不输入) Enter passphrase (empty for no passphrase): 公钥发送到远程Server ssh-copy-id remote_username@server_ip_address  # 用户通过身份验证后，公钥文件（~/.ssh/id_rsa.pub）的内容将附加到远程用户~/.ssh/authorized_keys文件中   # 如果没有ssh-copy-id 命令可以如下代替： cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &#34;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.&hellip;
+						
+					</div>
+					<a href="/posts/ssh-keys-on-debian/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/pip-install-error/">Pip安装以来报错</a></h1>
 					<time>May 14, 2022</time>
 					<br><div class="description">
@@ -77,18 +89,6 @@ mkdir -p $HOME/tmp echo &#34;export TMPDIR=$HOME/tmp&#34; &gt;&gt; ~/.bashrc sou
 						
 					</div>
 					<a href="/posts/golang-learning-14/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-13/">Golang入门篇|13.文件的操作</a></h1>
-					<time>May 7, 2022</time>
-					<br><div class="description">
-						
-						未完，等有空再学习一下
-package main  import ( 	&#34;fmt&#34; 	&#34;log&#34; 	&#34;os&#34; )  func main() { 	f, err := os.OpenFile(&#34;./test.txt&#34;, os.O_CREATE|os.O_RDWR, 0777) 	if err != nil { 	log.Fatal(err) 	return 	} 	for { 	b := make([]byte, 12) 	n, err := f.Read(b) 	if err != nil { 	fmt.Println(err) 	return 	} 	fmt.Println(string(b), n) 	} } &hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-13/">Read more ⟶</a>
 				</section>
 				
 				

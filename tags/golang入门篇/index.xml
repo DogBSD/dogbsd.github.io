@@ -57,6 +57,15 @@ package main  import ( 	&amp;#34;fmt&amp;#34; 	&amp;#34;log&amp;#34; 	&amp;#34;o
     </item>
     
     <item>
+      <title>Golang入门篇|9.interface{}</title>
+      <link>https://dogbsd.github.io/posts/golang-learning-9/</link>
+      <pubDate>Fri, 06 May 2022 02:00:54 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/posts/golang-learning-9/</guid>
+      <description>声明 type Animal interface { 	Eat() 	Run() } 实现接口 type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  // 给Cat结构体挂在方法 func (c Cat) Run() { 	fmt.Println(c.Name, &amp;#34;开始跑&amp;#34;) }  func (c Cat) Eat() { 	fmt.Println(c.Name, &amp;#34;开始吃&amp;#34;) } 调用接口 package main  import &amp;#34;fmt&amp;#34;  type Animal interface { 	Eat() 	Run() } type Cat struct { 	Name string 	Sex bool }  type Dog struct { 	Name string 	Sex bool }  func (c Cat) Run() { 	fmt.</description>
+    </item>
+    
+    <item>
       <title>Golang入门篇|8.结构体</title>
       <link>https://dogbsd.github.io/posts/golang-learning-8/</link>
       <pubDate>Fri, 06 May 2022 01:24:29 +0800</pubDate>

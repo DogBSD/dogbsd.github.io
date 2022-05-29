@@ -56,6 +56,18 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-13/">Golang入门篇|13.文件的操作</a></h1>
+					<time>May 7, 2022</time>
+					<br><div class="description">
+						
+						未完，等有空再学习一下
+package main  import ( 	&#34;fmt&#34; 	&#34;log&#34; 	&#34;os&#34; )  func main() { 	f, err := os.OpenFile(&#34;./test.txt&#34;, os.O_CREATE|os.O_RDWR, 0777) 	if err != nil { 	log.Fatal(err) 	return 	} 	for { 	b := make([]byte, 12) 	n, err := f.Read(b) 	if err != nil { 	fmt.Println(err) 	return 	} 	fmt.Println(string(b), n) 	} } &hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-13/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-12/">Golang入门篇|12.并发编程sync</a></h1>
 					<time>May 6, 2022</time>
 					<br><div class="description">
@@ -76,18 +88,6 @@
 						
 					</div>
 					<a href="/posts/golang-learning-11/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-10/">Golang入门篇|10.goroutine、channel</a></h1>
-					<time>May 6, 2022</time>
-					<br><div class="description">
-						
-						goroutine  在调用一个方法的前面加上go，比如 go add();会让方法一步执行，相当于协程 进程 &lt;&ndash;线程 &lt;&ndash;协程
- 最简单的goroutine package main  import ( 	&#34;fmt&#34; 	&#34;time&#34; )  func main() { 	fmt.Println(&#34;Go&#34;) 	go Run() 	time.Sleep(time.Second) } func Run() { 	fmt.Println(&#34;Run&#34;) } 协程管理器 package main  import ( 	&#34;fmt&#34; 	&#34;sync&#34; )  var wg sync.WaitGroup  func main() { 	wg.Add(1) // 计数器+1 	go Run() 	wg.Wait() // 等待结束  } func Run() { 	fmt.&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-10/">Read more ⟶</a>
 				</section>
 				
 				

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>使用SSH密钥快捷登录Debian - CatBSD&#39;s Blog</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="用密钥登陆的好处：1.安全 2.不用输入密码&hellip;
+查看本机的密钥文件 MacBook-Air:blog catbsd$ ls ~/.ssh/ id_rsa id_rsa.pub known_hosts   # id_rsa 密钥，十分的重要 # id_rsa.pub 公钥 密钥文件不存在，创建密钥 ssh-keygen -t rsa -b 4096 -C &#34;your_email@domain.com&#34;  # rsa 数字签名方式，还有其他：RSA，DSA，ECDSA，EdDSA和Ed25519 都用于数字签名 # 4096 指定了生成的密钥位数，默认2048 # id_rsa 代表就是用rsa签名生成的密钥   # 会提示你时候输入密码 (如果输入了，每次登陆的ssh的时候都要进行输入密码，默认不输入) Enter passphrase (empty for no passphrase): 公钥发送到远程Server ssh-copy-id remote_username@server_ip_address  # 用户通过身份验证后，公钥文件（~/.ssh/id_rsa.pub）的内容将附加到远程用户~/.ssh/authorized_keys文件中   # 如果没有ssh-copy-id 命令可以如下代替： cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &#34;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/." />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="使用SSH密钥快捷登录Debian" />
+<meta property="og:description" content="用密钥登陆的好处：1.安全 2.不用输入密码&hellip;
+查看本机的密钥文件 MacBook-Air:blog catbsd$ ls ~/.ssh/ id_rsa id_rsa.pub known_hosts   # id_rsa 密钥，十分的重要 # id_rsa.pub 公钥 密钥文件不存在，创建密钥 ssh-keygen -t rsa -b 4096 -C &#34;your_email@domain.com&#34;  # rsa 数字签名方式，还有其他：RSA，DSA，ECDSA，EdDSA和Ed25519 都用于数字签名 # 4096 指定了生成的密钥位数，默认2048 # id_rsa 代表就是用rsa签名生成的密钥   # 会提示你时候输入密码 (如果输入了，每次登陆的ssh的时候都要进行输入密码，默认不输入) Enter passphrase (empty for no passphrase): 公钥发送到远程Server ssh-copy-id remote_username@server_ip_address  # 用户通过身份验证后，公钥文件（~/.ssh/id_rsa.pub）的内容将附加到远程用户~/.ssh/authorized_keys文件中   # 如果没有ssh-copy-id 命令可以如下代替： cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &#34;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://dogbsd.github.io/posts/ssh-keys-on-debian/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-29T13:50:57+08:00" />
+<meta property="article:modified_time" content="2022-05-29T13:50:57+08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用SSH密钥快捷登录Debian"/>
+<meta name="twitter:description" content="用密钥登陆的好处：1.安全 2.不用输入密码&hellip;
+查看本机的密钥文件 MacBook-Air:blog catbsd$ ls ~/.ssh/ id_rsa id_rsa.pub known_hosts   # id_rsa 密钥，十分的重要 # id_rsa.pub 公钥 密钥文件不存在，创建密钥 ssh-keygen -t rsa -b 4096 -C &#34;your_email@domain.com&#34;  # rsa 数字签名方式，还有其他：RSA，DSA，ECDSA，EdDSA和Ed25519 都用于数字签名 # 4096 指定了生成的密钥位数，默认2048 # id_rsa 代表就是用rsa签名生成的密钥   # 会提示你时候输入密码 (如果输入了，每次登陆的ssh的时候都要进行输入密码，默认不输入) Enter passphrase (empty for no passphrase): 公钥发送到远程Server ssh-copy-id remote_username@server_ip_address  # 用户通过身份验证后，公钥文件（~/.ssh/id_rsa.pub）的内容将附加到远程用户~/.ssh/authorized_keys文件中   # 如果没有ssh-copy-id 命令可以如下代替： cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address &#34;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/."/>
+<script src="https://dogbsd.github.io/js/feather.min.js"></script>
+	
+	
+        <link href="https://dogbsd.github.io/css/fonts.b685ac6f654695232de7b82a9143a46f9e049c8e3af3a21d9737b01f4be211d1.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://dogbsd.github.io/css/main.2f9b5946627215dc1ae7fa5f82bfc9cfcab000329136befeea5733f21e77d68f.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://dogbsd.github.io/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css" media="(prefers-color-scheme: dark)"  />
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://dogbsd.github.io/">CatBSD&#39;s Blog</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">All posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">使用SSH密钥快捷登录Debian</h1>
+			<div class="meta">Posted on May 29, 2022</div>
+		</div>
+		
+		<div class="tldr">
+			<strong>tl;dr:</strong>
+			使用SSH密钥快捷登录Debian
+		</div>
+
+		<section class="body">
+			<p>用密钥登陆的好处：1.安全 2.不用输入密码&hellip;</p>
+<h3 id="查看本机的密钥文件">查看本机的密钥文件</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>MacBook-Air:blog catbsd$ ls ~/.ssh/
+</span></span><span style="display:flex;"><span>id_rsa      id_rsa.pub  known_hosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id_rsa 密钥，十分的重要</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id_rsa.pub  公钥</span>
+</span></span></code></pre></div><h3 id="密钥文件不存在创建密钥">密钥文件不存在，创建密钥</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-keygen -t rsa -b <span style="color:#ae81ff">4096</span> -C <span style="color:#e6db74">&#34;your_email@domain.com&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rsa 数字签名方式，还有其他：RSA，DSA，ECDSA，EdDSA和Ed25519 都用于数字签名</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4096 指定了生成的密钥位数，默认2048</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># id_rsa 代表就是用rsa签名生成的密钥</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 会提示你时候输入密码 (如果输入了，每次登陆的ssh的时候都要进行输入密码，默认不输入)</span>
+</span></span><span style="display:flex;"><span>Enter passphrase <span style="color:#f92672">(</span>empty <span style="color:#66d9ef">for</span> no passphrase<span style="color:#f92672">)</span>:
+</span></span></code></pre></div><h3 id="公钥发送到远程server">公钥发送到远程Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh-copy-id remote_username@server_ip_address
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 用户通过身份验证后，公钥文件（~/.ssh/id_rsa.pub）的内容将附加到远程用户~/.ssh/authorized_keys文件中</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果没有ssh-copy-id 命令可以如下代替：</span>
+</span></span><span style="display:flex;"><span>cat ~/.ssh/id_rsa.pub | ssh remote_username@server_ip_address <span style="color:#e6db74">&#34;mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys&#34;</span>
+</span></span></code></pre></div><h3 id="登录">登录</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ssh remote_username@server_ip_address
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 禁用密码登录SSH</span>
+</span></span><span style="display:flex;"><span>sudo vim /etc/ssh/sshd_config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PasswordAuthentication no
+</span></span><span style="display:flex;"><span>ChallengeResponseAuthentication no
+</span></span><span style="display:flex;"><span>UsePAM no
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sudo systemctl restart ssh
+</span></span></code></pre></div><p>参考: <a href="https://www.myfreax.com/how-to-set-up-ssh-keys-on-debian-10/">https://www.myfreax.com/how-to-set-up-ssh-keys-on-debian-10/</a></p>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			<nav class="nav tags">
+				<ul class="tags">
+					
+					<li><a href="/tags/ssh">ssh</a></li>
+					
+					<li><a href="/tags/linux">linux</a></li>
+					
+				</ul>
+			</nav>
+			
+			
+		</div>
+	</article>
+</main>
+<footer>
+<hr><a class="soc" href="https://github.com/dogbsd" title="GitHub"><i data-feather="github"></i></a>|⚡️
+	2022  © CatBSD |  <a href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+</footer>
+
+
+<script>
+      feather.replace()
+</script></div>
+    </body>
+</html>

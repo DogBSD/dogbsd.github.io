@@ -56,6 +56,20 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/golang-learning-4/">Golang入门篇|4.数组和切片</a></h1>
+					<time>May 3, 2022</time>
+					<br><div class="description">
+						
+						数组 array  把同类元素数组放入一个集合
+ // 定义一个数组 package main  import &#34;fmt&#34;  func main() { 	arr := [3]int{1, 2, 3} // 长度为3的，类型为int的数组 	fmt.Println(&#34;数组的长度:&#34;, len(arr)) 	fmt.Println(arr) }  arr := [...]int{1,2,3,4,5,6,7} // 固定长度，不一定需要指定   // 使用new的方式声明数组 var a = new([10]int) a[5] = 3 fmt.Println(a)   数组的缺点，长度不可变，意为这有新数据就无法添加进去，只能重新生成新的数组，消耗了内存。
+  数组的循环
+  	for i := 0; i &lt; len(a); i++ { 	fmt.Println(a[i]) 	}  	for k, v := range a { 	fmt.&hellip;
+						
+					</div>
+					<a href="/posts/golang-learning-4/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/golang-learning-3/">Golang入门篇|3.流程控制语句</a></h1>
 					<time>May 3, 2022</time>
 					<br><div class="description">
@@ -77,18 +91,6 @@ true false 简单判断当前变量的数据类型 package main  import &#34;fmt
 						
 					</div>
 					<a href="/posts/golang-learning-2/">Read more ⟶</a>
-				</section>
-				
-				<section class="list-item">
-					<h1 class="title"><a href="/posts/golang-learning-1/">Golang入门篇|1.变量、包</a></h1>
-					<time>May 3, 2022</time>
-					<br><div class="description">
-						
-						于盖高楼，必筑其基；最近发现写代码有点困难，借此51长假，重修Golang基础篇！
- 变量、常量 package main  import &#34;fmt&#34;  func main() { 	// 变量 	var a string = &#34;Hello Golang!&#34; // 数据类型string 	// 常量 	const b float32 = 5.03 // 浮点类型  	c := &#34;Golang&#34; // 变量隐式声明，不可用于全局变量的声明 	fmt.Println(a, b, c) }  简便声明多个变量的方式  var ( 	a = 1 	b = 2.2 	c = true )  // 如果为同种数据类型 var a, b, c, d = 1, 2, 23, 2 包 package  一个文件夹下不可以出现多个包，main包是程序的入口，其他包可以相互引入。一般文件夹名为包名； 如果一个包中的函数或者变量需要在其他包引入，则需要将变量var a string = &quot;Hello Golang!&hellip;
-						
-					</div>
-					<a href="/posts/golang-learning-1/">Read more ⟶</a>
 				</section>
 				
 				

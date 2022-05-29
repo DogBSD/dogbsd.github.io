@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© CatBSD</copyright>
-    <lastBuildDate>Sat, 14 May 2022 19:08:35 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 May 2022 13:50:57 +0800</lastBuildDate><atom:link href="https://dogbsd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>linux</title>
+      <link>https://dogbsd.github.io/tags/linux/</link>
+      <pubDate>Sun, 29 May 2022 13:50:57 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssh</title>
+      <link>https://dogbsd.github.io/tags/ssh/</link>
+      <pubDate>Sun, 29 May 2022 13:50:57 +0800</pubDate>
+      
+      <guid>https://dogbsd.github.io/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>python</title>
       <link>https://dogbsd.github.io/tags/python/</link>
@@ -36,15 +54,6 @@
     </item>
     
     <item>
-      <title>Golang入门篇 golang</title>
-      <link>https://dogbsd.github.io/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87-golang/</link>
-      <pubDate>Fri, 06 May 2022 02:00:54 +0800</pubDate>
-      
-      <guid>https://dogbsd.github.io/tags/golang%E5%85%A5%E9%97%A8%E7%AF%87-golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Golang求生之路</title>
       <link>https://dogbsd.github.io/tags/golang%E6%B1%82%E7%94%9F%E4%B9%8B%E8%B7%AF/</link>
       <pubDate>Mon, 02 May 2022 20:13:28 +0800</pubDate>
@@ -59,15 +68,6 @@
       <pubDate>Sat, 30 Apr 2022 20:40:53 +0800</pubDate>
       
       <guid>https://dogbsd.github.io/tags/typescript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>linux</title>
-      <link>https://dogbsd.github.io/tags/linux/</link>
-      <pubDate>Mon, 11 Apr 2022 18:07:00 +0800</pubDate>
-      
-      <guid>https://dogbsd.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
